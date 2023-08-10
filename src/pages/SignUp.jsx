@@ -122,7 +122,7 @@ export default function SignUp() {
                 <Input type="text" name="title" />
               </FormControl>
               <FormControl mb="10px">
-                <FormLabel mb={"0"}>Paword Confirm</FormLabel>
+                <FormLabel mb={"0"}>Password Confirm</FormLabel>
                 <Input type="text" name="title" />
               </FormControl>
             </Form>

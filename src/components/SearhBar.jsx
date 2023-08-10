@@ -1,33 +1,51 @@
 import React from "react";
 import {
   Button,
+  Flex,
   Input,
   InputGroup,
   InputLeftElement,
   InputRightAddon,
+  Select,
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 
-export default function SearchBar() {
+export default function SearchBar({ searchPlaceHolder }) {
+  const searchBar = {
+    borderRadius: "5px",
+    width: " 321.606px",
+    height: " 57px",
+    flexShrink: 0,
+    bg: "#FFF",
+    mt: "11px",
+    mb: "10px",
+    ml: "32.46px",
+    flexShrink: 0,
+  };
+
+  const flex = {
+    gap: "8.12px",
+    alignItems: "center",
+    justifyContent: "center",
+    ml: "16.23px",
+  };
+
+  const input = {
+    w: "260px",
+  };
+
   return (
-    <>
-      <InputGroup borderRadius={5} size="sm">
-        <InputLeftElement
-          pointerEvents="none"
-          children={<Search2Icon color="gray.600" />}
+    <InputGroup sx={searchBar}>
+      <Flex sx={flex}>
+        <Search2Icon color="black" />
+        <Input
+          sx={input}
+          type="text"
+          placeholder={searchPlaceHolder}
+          _focus={{ boxShadow: "none" }}
+          border={"none"}
         />
-        <Input type="text" placeholder="Search..." border="1px solid #949494" />
-        <InputRightAddon p={0} border="none">
-          <Button
-            size="sm"
-            borderLeftRadius={0}
-            borderRightRadius={3.3}
-            border="1px solid #949494"
-          >
-            Search
-          </Button>
-        </InputRightAddon>
-      </InputGroup>
-    </>
+      </Flex>
+    </InputGroup>
   );
 }

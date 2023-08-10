@@ -1,7 +1,7 @@
 import { Flex, Grid, GridItem, Heading, Spacer, Text } from "@chakra-ui/react";
 import SideBar from "../components/SideBar";
 
-export default function NavBar() {
+export default function NavBar({ navBarTitle, adminUsername, status }) {
   const flex = {
     flexDirection: "spread-around",
     bg: "#FFF",
@@ -43,11 +43,11 @@ export default function NavBar() {
 
   return (
     <Flex sx={flex}>
-      <Text sx={right}>unyime</Text>
+      <Text sx={right}>{navBarTitle}</Text>
       <Spacer />
       <Flex flexDirection={"column"} m={"27px"}>
-        <Text sx={left1}>unyime</Text>
-        <Text sx={left2}>ayomide</Text>
+        <Text sx={left1}>{adminUsername}</Text>
+        <Text sx={left2}>{status}</Text>
       </Flex>
     </Flex>
   );

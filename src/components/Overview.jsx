@@ -1,7 +1,8 @@
 import { Container, Flex, Image, Text } from "@chakra-ui/react";
 import UserListItem from "./UserListItem";
+import NavBar from "./NavBar";
 
-export default function Overview() {
+export default function Overview({ navBarTitle, adminUsername, status }) {
   const container = {
     // width: "1440px",
     height: "124vh",
@@ -86,30 +87,6 @@ export default function Overview() {
       width: "6px", // Adjusts the width of the scrollbar track
       borderRadius: "10px",
     },
-
-    // "&::-webkit-scrollbar-thumb": {
-    //   color: "#008F8F",
-    // },
-    // "&::-webkit-scrollbar": {
-    //   w: "2",
-    // },
-    // "&::-webkit-scrollbar-track": {
-    //   w: "6",
-    // },
-
-    // overflow-y: scroll;
-    // -webkit-overflow-scrolling: touch;
-    // /* width: 300px; */
-    // width: auto;
-    // border-radius: 5px;
-    // height: 35px;
-    // background-color: transparent;
-    // /* border: 1px solid #3ea6ff; */
-    // gap: 7px;
-    // padding: 2px;
-    // ::-webkit-scrollbar {
-    //     display: none;
-    //   }
   };
 
   const outSideRight = {
@@ -126,80 +103,87 @@ export default function Overview() {
   };
 
   return (
-    <Flex sx={container}>
-      <Flex p={"39px"} justifyContent={"flex-start"} gap={"39px"}>
-        <Flex sx={topRightCard} justifyContent={"flex-start"}>
-          <Flex flexDirection={"column"} width={"438px"}>
-            <Text sx={text}>TOTAL NUMBER OF USERS</Text>
-            <Text sx={number}>1,000,000</Text>
+    <>
+      <NavBar
+        navBarTitle={navBarTitle}
+        adminUsername={adminUsername}
+        status={status}
+      />
+      <Flex sx={container}>
+        <Flex p={"39px"} justifyContent={"flex-start"} gap={"39px"}>
+          <Flex sx={topRightCard} justifyContent={"flex-start"}>
+            <Flex flexDirection={"column"} width={"438px"}>
+              <Text sx={text}>TOTAL NUMBER OF USERS</Text>
+              <Text sx={number}>1,000,000</Text>
+            </Flex>
+            <Flex alignItems={"center"}>
+              <Flex sx={icon}>
+                <Image src={"/public/usersIcon.svg"} />
+              </Flex>
+            </Flex>
           </Flex>
-          <Flex alignItems={"center"}>
-            <Flex sx={icon}>
-              <Image src={"/public/usersIcon.svg"} />
+          <Flex sx={topLeftCard}>
+            <Flex flexDirection={"column"} width={"438px"}>
+              <Text sx={text}>TOTAL NUMBER OF ADMINS</Text>
+              <Text sx={number}>970</Text>
+            </Flex>
+            <Flex alignItems={"center"}>
+              <Flex sx={icon}>
+                <Image src={"/public/adminIcon.svg"} />
+              </Flex>
             </Flex>
           </Flex>
         </Flex>
-        <Flex sx={topLeftCard}>
-          <Flex flexDirection={"column"} width={"438px"}>
-            <Text sx={text}>TOTAL NUMBER OF ADMINS</Text>
-            <Text sx={number}>970</Text>
+        <Flex h={"122px"} ml={"39px"} gap={"37px"}>
+          <Flex flexDirection={"column"} sx={outSideRight}>
+            <Text sx={textDown}>List Of Users</Text>
+            <Container sx={cardList}>
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+            </Container>
           </Flex>
-          <Flex alignItems={"center"}>
-            <Flex sx={icon}>
-              <Image src={"/public/adminIcon.svg"} />
-            </Flex>
+          <Flex flexDirection={"column"} sx={outSideRight}>
+            <Text sx={textDown}>List Of Admins</Text>
+            <Container sx={cardList}>
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+            </Container>
           </Flex>
         </Flex>
       </Flex>
-      <Flex h={"122px"} ml={"39px"} gap={"37px"}>
-        <Flex flexDirection={"column"} sx={outSideRight}>
-          <Text sx={textDown}>List Of Users</Text>
-          <Container sx={cardList}>
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-          </Container>
-        </Flex>
-        <Flex flexDirection={"column"} sx={outSideRight}>
-          <Text sx={textDown}>List Of Admins</Text>
-          <Container sx={cardList}>
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-            <UserListItem />
-          </Container>
-        </Flex>
-      </Flex>
-    </Flex>
+    </>
   );
 }

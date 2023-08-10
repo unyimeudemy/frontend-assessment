@@ -1,6 +1,17 @@
 import { Divider, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  admins,
+  logout,
+  overview,
+  users,
+} from "../redux/slices/changeTabSlices";
 
 export default function SideBar() {
+  const dispatch = useDispatch();
+  const { tab } = useSelector((state) => state.changeTab);
+  console.log("tabV: ", tab);
+
   const sideBar = {
     flexDirection: "column",
     alignItems: "center",
@@ -22,7 +33,7 @@ export default function SideBar() {
     marginY: "30px",
   };
 
-  const tab = {
+  const tabV = {
     width: "243px",
     height: "48px",
     flexShrink: "0px",
@@ -30,6 +41,7 @@ export default function SideBar() {
     alignItems: "center",
     justifyContent: "center",
     gap: "30px",
+    cursor: "pointer",
 
     _hover: {
       bg: "#51FFFF",
@@ -53,7 +65,7 @@ export default function SideBar() {
     color: "white",
 
     _hover: {
-      // bg: "#51FFFF",
+      // bg: "",
       color: "#303030",
     },
   };
@@ -62,19 +74,35 @@ export default function SideBar() {
     <Flex sx={sideBar}>
       <Image src={"/public/logo.png"} sx={logo} />
       <Divider sx={divider} />
-      <Flex sx={tab}>
+      <Flex
+        sx={tabV}
+        bg={tab === "overview" && "#51FFFF"}
+        onClick={() => dispatch(overview())}
+      >
         <Image src={"/public/overview.svg"} sx={icon} />
         <Text sx={text}>Overview</Text>
       </Flex>
-      <Flex sx={tab}>
+      <Flex
+        sx={tabV}
+        onClick={() => dispatch(users())}
+        bg={tab === "users" && "#51FFFF"}
+      >
         <Image src={"/public/users.svg"} sx={icon} />
         <Text sx={text}>Users</Text>
       </Flex>
-      <Flex sx={tab}>
+      <Flex
+        sx={tabV}
+        onClick={() => dispatch(admins())}
+        bg={tab === "admins" && "#51FFFF"}
+      >
         <Image src={"/public/Admin.svg"} sx={icon} />
         <Text sx={text}>Admins</Text>
       </Flex>
-      <Flex sx={tab}>
+      <Flex
+        sx={tabV}
+        onClick={() => dispatch(logout())}
+        bg={tab === "logout" && "#51FFFF"}
+      >
         <Image src={"/public/Logout.svg"} sx={icon} />
         <Text sx={text}>Logout</Text>
       </Flex>
