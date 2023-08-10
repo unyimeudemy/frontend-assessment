@@ -12,9 +12,20 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import { Form } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { Form, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeat_password, setPasswordConfirm] = useState("");
+
+  const navigate = useNavigate();
+
   const loginText1 = {
     color: "#FFF",
     fontSize: "40px",
@@ -81,9 +92,29 @@ export default function SignUp() {
     flexShrink: 0,
     borderRadius: "10px",
     bg: "#008F8F",
+  };
 
-    //     border-radius: 10px;
-    // background: #008F8F;
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    console.log("login clicked");
+    console.log("res.data: ", username, firstName);
+    navigate("/");
+
+    try {
+      const res = await axios.post(
+        "https://test.3scorers.com/api/v1/admin/sign-up/?adminId=1",
+        {
+          firstName,
+          lastName,
+          username,
+          email,
+          password,
+          repeat_password,
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -103,31 +134,57 @@ export default function SignUp() {
             <Form width={"auto"}>
               <FormControl mb="10px" width={"450px"}>
                 <FormLabel mb={"0"}>First Name</FormLabel>
-                <Input type="text" name="title" />
+                <Input
+                  type="text"
+                  name="firstName"
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
               </FormControl>
               <FormControl mb="10px">
                 <FormLabel mb={"0"}>Last Name</FormLabel>
-                <Input type="text" name="title" />
+                <Input
+                  type="text"
+                  name="lastName"
+                  onChange={(e) => setLastName(e.target.value)}
+                />
               </FormControl>
               <FormControl mb="10px">
                 <FormLabel mb={"0"}>Username</FormLabel>
-                <Input type="text" name="title" />
+                <Input
+                  type="text"
+                  name="username"
+                  onChange={(e) => setUserName(e.target.value)}
+                />
               </FormControl>
               <FormControl mb="10px">
                 <FormLabel mb={"0"}>Email Address</FormLabel>
-                <Input type="text" name="title" />
+                <Input
+                  type="email"
+                  name="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </FormControl>
               <FormControl mb="10px">
                 <FormLabel mb={"0"}>Password</FormLabel>
-                <Input type="text" name="title" />
+                <Input
+                  type="password"
+                  name="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </FormControl>
               <FormControl mb="10px">
                 <FormLabel mb={"0"}>Password Confirm</FormLabel>
-                <Input type="text" name="title" />
+                <Input
+                  type="password"
+                  name="passwordConfirm"
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
+                />
               </FormControl>
             </Form>
             <Flex justifyContent={"center"} alignItems={"center"} flex={1}>
-              <Button sx={button}>Sign up</Button>
+              <Button sx={button} onClick={handleSignUp}>
+                Sign up
+              </Button>
             </Flex>
           </Container>
         </Flex>

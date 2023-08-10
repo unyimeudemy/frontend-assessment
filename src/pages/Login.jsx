@@ -9,9 +9,14 @@ import {
   Image,
   Input,
 } from "@chakra-ui/react";
-import { Form } from "react-router-dom";
+import { useState } from "react";
+import { Form, useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   const container = {
     bg: " #008F8F",
     height: "100vh",
@@ -46,9 +51,24 @@ export default function Login() {
     flexShrink: 0,
     borderRadius: "10px",
     bg: "#008F8F",
+  };
 
-    //     border-radius: 10px;
-    // background: #008F8F;
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    console.log("login clicked");
+    navigate("/");
+
+    try {
+      const res = await axios.post(
+        "https://test.3scorers.com/api/v1/admin/login",
+        {
+          email,
+          password,
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -58,14 +78,24 @@ export default function Login() {
         <Form width={"auto"}>
           <FormControl mb="10px" mt={"70px"}>
             <FormLabel mb={"0"}>Email Address</FormLabel>
-            <Input type="text" name="title" />
+            <Input
+              type="text"
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </FormControl>
           <FormControl mb="10px">
             <FormLabel mb={"0"}>Password</FormLabel>
-            <Input type="text" name="title" />
+            <Input
+              type="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </FormControl>
           <Flex justifyContent={"center"} alignItems={"center"} mt={"40px"}>
-            <Button sx={button}>Login</Button>
+            <Button sx={button} onClick={handleLogin}>
+              Login
+            </Button>
           </Flex>
         </Form>
       </Container>
