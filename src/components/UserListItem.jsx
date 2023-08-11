@@ -3,7 +3,7 @@ import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import Overview from "../components/Overview";
 
-export default function UserListItem() {
+export default function UserListItem({ username }) {
   const left = {
     colSpan: 1,
     h: "56px",
@@ -29,6 +29,7 @@ export default function UserListItem() {
     fontWeightt: 400,
     lineHeight: "24px",
     textAlign: "right",
+    cursor: "pointer",
   };
 
   return (
@@ -39,7 +40,8 @@ export default function UserListItem() {
       <GridItem colSpan={6} h={"30px"}>
         <Flex alignItems={"center"} h={"56px"}>
           <Text sx={middle} pl={"16px"}>
-            Adelanke Adelanke
+            {username}
+            unyime
           </Text>
         </Flex>
       </GridItem>

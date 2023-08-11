@@ -14,18 +14,11 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Form, useNavigate } from "react-router-dom";
+import { loginFailure, loginSuccess } from "../redux/slices/userSlice";
 
 export default function SignUp() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [username, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeat_password, setPasswordConfirm] = useState("");
-
-  const navigate = useNavigate();
-
   const loginText1 = {
     color: "#FFF",
     fontSize: "40px",
@@ -94,11 +87,22 @@ export default function SignUp() {
     bg: "#008F8F",
   };
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeat_password, setPasswordConfirm] = useState("");
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const handleSignUp = async (e) => {
     e.preventDefault();
     console.log("login clicked");
     console.log("res.data: ", username, firstName);
-    navigate("/");
+    dispatch(loginStart());
 
     try {
       const res = await axios.post(
@@ -106,13 +110,17 @@ export default function SignUp() {
         {
           firstName,
           lastName,
-          username,
           email,
+          username,
           password,
           repeat_password,
         }
       );
+      navigate("/");
+      dispatch(loginSuccess(res.data));
+      console.log(res);
     } catch (err) {
+      dispatch(loginFailure());
       console.log(err.message);
     }
   };
@@ -192,3 +200,18 @@ export default function SignUp() {
     </Grid>
   );
 }
+
+// {
+//     "success": true,
+//     "data": {
+//         "id": 125,
+//         "firstName": "unyime",
+//         "lastName": "udoh",
+//         "email": "unyimeudoh20@gmail.com",
+//         "username": "unyime",
+//         "role": "admin",
+//         "updatedAt": "2023-08-11T10:01:51.643Z",
+//         "createdAt": "2023-08-11T10:01:51.643Z"
+//     },
+//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTE3NDgxMTEsImV4cCI6MTY5MTkyMDkxMX0.pELTC7gisMyQPzPfKrTPTwv3DRgJwMfczwdiT4r-RoU"
+// }

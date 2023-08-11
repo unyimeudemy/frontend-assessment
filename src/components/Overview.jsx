@@ -1,6 +1,8 @@
-import { Container, Flex, Image, Text } from "@chakra-ui/react";
+import { Container, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import UserListItem from "./UserListItem";
 import NavBar from "./NavBar";
+import axios from "axios";
+import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 
 export default function Overview({ navBarTitle, adminUsername, status }) {
   const container = {
@@ -102,6 +104,23 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
     lineHeight: "32px",
   };
 
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get(
+        "https://test.3scorers.com/api/v1/admin/get-users",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  fetchUser();
+
   return (
     <>
       <NavBar
@@ -138,6 +157,23 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
           <Flex flexDirection={"column"} sx={outSideRight}>
             <Text sx={textDown}>List Of Users</Text>
             <Container sx={cardList}>
+              {/* <Stack mt={"25px"}>
+                <Skeleton height="56px" />
+                <Skeleton height="56px" />
+                <Skeleton height="56px" />
+                <Skeleton height="56px" />
+                <Skeleton height="56px" />
+                <Skeleton height="56px" />
+              </Stack> */}
+              {/* {res &&
+                res.data?.map((user) => (
+                  <UserListItem key={user.id} username={user?.username} />
+                ))} */}
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              <UserListItem />
+              {/* <UserListItem />
               <UserListItem />
               <UserListItem />
               <UserListItem />
@@ -166,9 +202,7 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
               <UserListItem />
               <UserListItem />
               <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
+              <UserListItem /> */}
             </Container>
           </Flex>
           <Flex flexDirection={"column"} sx={outSideRight}>

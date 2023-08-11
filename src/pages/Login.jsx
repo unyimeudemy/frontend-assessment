@@ -9,14 +9,18 @@ import {
   Image,
   Input,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  loginFailure,
+  loginSuccess,
+  loginStart,
+} from "../redux/slices/userSlice";
+import Axios from "../lib/api/axios";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
   const container = {
     bg: " #008F8F",
     height: "100vh",
@@ -53,20 +57,29 @@ export default function Login() {
     bg: "#008F8F",
   };
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     console.log("login clicked");
-    navigate("/");
+    console.log(email, password);
+    dispatch(loginStart());
 
     try {
-      const res = await axios.post(
-        "https://test.3scorers.com/api/v1/admin/login",
-        {
-          email,
-          password,
-        }
-      );
+      console.log(email, password);
+      const res = await Axios.post("/admin/login", {
+        email,
+        password,
+      });
+      dispatch(loginSuccess(res.data));
+      localStorage.setItem("AccessToken", `Bearer ${res.data.accessToken}`);
+      navigate("/");
+      //   console.log(res);
     } catch (err) {
+      dispatch(loginFailure());
       console.log(err.message);
     }
   };
@@ -102,3 +115,21 @@ export default function Login() {
     </Flex>
   );
 }
+
+// {
+//     "success": true,
+//     "data": {
+//         "id": 125,
+//         "firstName": "unyime",
+//         "lastName": "udoh",
+//         "email": "unyimeudoh20@gmail.com",
+//         "username": "unyime",
+//         "role": "admin",
+//         "createdAt": "2023-08-11T10:01:51.643Z",
+//         "updatedAt": "2023-08-11T10:01:51.643Z"
+//     },
+//     "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTE3NTA4MjIsImV4cCI6MTY5MTc1NDQyMn0.k8DoZpFT0b1EaUnPTbdJkOu7jewAvC2QRJrSwgR7gPA",
+//     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJpYXQiOjE2OTE3NTA4MjIsImV4cCI6MTY5MTkyMzYyMn0.FD3YFlKFJV0ROzCXbJxhmIloGp3LS62k7HXzH4yV86E"
+// }
+
+// "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTE3NjQwNTUsImV4cCI6MTY5MTc2NzY1NX0.o8lgvcPlnyFIYhEpoViLxXsx-OrG2tsR_L-VHYCs5Bs",

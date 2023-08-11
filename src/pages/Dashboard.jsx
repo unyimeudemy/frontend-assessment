@@ -4,9 +4,13 @@ import NavBar from "../components/NavBar";
 import Overview from "../components/Overview";
 import UserAndAdmin from "../components/UserAndAdmin";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 export default function Dashboard() {
   const { tab } = useSelector((state) => state.changeTab);
+  const { currentUser } = useSelector((state) => state.user);
+  console.log("currentUser: ", currentUser.data.user);
+
   //   const dispatch = useDispatch();
 
   if (tab === "overview") {
@@ -18,8 +22,8 @@ export default function Dashboard() {
         <GridItem>
           <Overview
             navBarTitle="Overview"
-            adminUsername="Unyime"
-            status="Administrator"
+            adminUsername={currentUser.data.username}
+            status={currentUser.data.role === "admin" ? "Administrator" : ""}
           />
         </GridItem>
       </Grid>
@@ -34,8 +38,8 @@ export default function Dashboard() {
           <UserAndAdmin
             searchPlaceHolder="Search for Admins"
             navBarTitle="Admins"
-            adminUsername="Unyime"
-            status="Administrator"
+            adminUsername={currentUser.data.username}
+            status={currentUser.data.role === "admin" ? "Administrator" : ""}
             listTitle="Admin’s Name"
           />
         </GridItem>
@@ -51,8 +55,8 @@ export default function Dashboard() {
           <UserAndAdmin
             searchPlaceHolder="Search for Users"
             navBarTitle="Users"
-            adminUsername="Unyime"
-            status="Administrator"
+            adminUsername={currentUser.data.username}
+            status={currentUser.data.role === "admin" ? "Administrator" : ""}
             listTitle="User’s Name"
           />
         </GridItem>
