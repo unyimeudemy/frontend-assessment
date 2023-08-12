@@ -184,6 +184,7 @@ export default function UserAndAdmin({
               ) : (
                 usersAndAdmins?.map((userOrAdmin, i) => (
                   <UserListItem1
+                    key={i}
                     firstName={userOrAdmin.firstName}
                     lastName={userOrAdmin.lastName}
                     imageSrc={"/public/profilePic.png"}

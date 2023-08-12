@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Flex,
@@ -9,13 +9,13 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
+import { useLocation } from "react-router-dom";
 
 export default function SearchBar({ searchPlaceHolder }) {
   const searchBar = {
     borderRadius: "5px",
     width: " 321.606px",
     height: " 57px",
-    flexShrink: 0,
     bg: "#FFF",
     mt: "11px",
     mb: "10px",
@@ -34,16 +34,29 @@ export default function SearchBar({ searchPlaceHolder }) {
     w: "260px",
   };
 
+  const [searchQ, setSearchQ] = useState("");
+
+  const handleSearch = () => {
+    console.log("search clicked: ");
+  };
+
   return (
     <InputGroup sx={searchBar}>
       <Flex sx={flex}>
-        <Search2Icon color="black" />
+        <Search2Icon
+          color="black"
+          cursor={"pointer"}
+          onClick={() => handleSearch}
+        />
         <Input
           sx={input}
           type="text"
           placeholder={searchPlaceHolder}
           _focus={{ boxShadow: "none" }}
           border={"none"}
+          onChange={(e) => {
+            setSearchQ(e.target.value);
+          }}
         />
       </Flex>
     </InputGroup>

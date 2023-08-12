@@ -11,8 +11,6 @@ import { PersistGate } from "redux-persist/integration/react";
 // import dotenv from "dotenv";
 // dotenv.config({ path: "./config.env" });
 
-// console.log(process.env.REACT_APP_BASE_URL);
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>

@@ -8,11 +8,12 @@ import {
   GridItem,
   Image,
   Input,
+  Spinner,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   loginFailure,
   loginSuccess,
@@ -65,12 +66,10 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // console.log("login clicked");
-    // console.log(email, password);
+
     dispatch(loginStart());
 
     try {
-      console.log(email, password);
       const res = await Axios.post("/admin/login", {
         email,
         password,
@@ -78,12 +77,15 @@ export default function Login() {
       dispatch(loginSuccess(res.data));
       localStorage.setItem("AccessToken", `Bearer ${res.data.accessToken}`);
       dispatch(overview());
+      console.log("loading: ", loading);
       navigate("/");
     } catch (err) {
       dispatch(loginFailure());
       console.log(err.message);
     }
   };
+
+  const { loading } = useSelector((state) => state.user);
 
   return (
     <Flex sx={container}>
@@ -108,7 +110,7 @@ export default function Login() {
           </FormControl>
           <Flex justifyContent={"center"} alignItems={"center"} mt={"40px"}>
             <Button sx={button} onClick={handleLogin}>
-              Login
+              {loading ? <Spinner size="md" /> : <div>Login</div>}
             </Button>
           </Flex>
         </Form>

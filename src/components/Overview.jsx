@@ -133,16 +133,6 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
   };
   func();
 
-  //   if (users?.length == 0) {
-  //     console.log("entered");
-  //     dispatch(allUsersSuccess());
-  //     const { loading } = useSelector((state) => state.allUsers);
-
-  //     console.log(loading);
-  //   }
-
-  //   console.log("users: ", users);
-
   return (
     <>
       <NavBar

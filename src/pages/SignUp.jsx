@@ -10,11 +10,12 @@ import {
   GridItem,
   Image,
   Input,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, useNavigate } from "react-router-dom";
 import {
   loginFailure,
@@ -102,11 +103,10 @@ export default function SignUp() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const { loading } = useSelector((state) => state.user);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    console.log("login clicked");
-    console.log("res.data: ", username, firstName);
     dispatch(loginStart());
 
     try {
@@ -196,7 +196,7 @@ export default function SignUp() {
             </Form>
             <Flex justifyContent={"center"} ml={"100px"}>
               <Button sx={button} onClick={handleSignUp}>
-                Sign up
+                {loading ? <Spinner size="md" /> : <div>Sign up</div>}
               </Button>
             </Flex>
           </Container>
