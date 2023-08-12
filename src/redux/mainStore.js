@@ -3,6 +3,9 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import changeTabReducer from "../redux/slices/changeTabSlices.js";
 import userReducer from "../redux/slices/userSlice.js";
+import allUsersReducer from "../redux/slices/allUsersSlice.js";
+import allAdminsReducer from "../redux/slices/allAdminsSlice.js";
+import popUpStatusReducer from "../redux/slices/popUpStatusSlice.js";
 
 const persistConfig = {
   key: "root",
@@ -13,6 +16,9 @@ const persistConfig = {
 const rootReducer = combineReducers({
   changeTab: changeTabReducer,
   user: userReducer,
+  allUsers: allUsersReducer,
+  allAdmins: allAdminsReducer,
+  popUpStatus: popUpStatusReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

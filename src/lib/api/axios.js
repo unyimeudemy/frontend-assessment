@@ -1,6 +1,4 @@
 import axios from "axios";
-import dotenv from "dotenv";
-// dotenv.config({ path: "./.env" });
 
 const Axios = axios.create({
   baseURL: "https://test.3scorers.com/api/v1",

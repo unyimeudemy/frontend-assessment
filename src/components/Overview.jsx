@@ -3,6 +3,11 @@ import UserListItem from "./UserListItem";
 import NavBar from "./NavBar";
 import axios from "axios";
 import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import Axios from "../lib/api/axios";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { allUsersSuccess } from "../redux/slices/allUsersSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Overview({ navBarTitle, adminUsername, status }) {
   const container = {
@@ -104,22 +109,39 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
     lineHeight: "32px",
   };
 
-  const fetchUser = async () => {
+  const [users, setUsers] = useState([]);
+  const [admins, setAdmins] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const func = async () => {
     try {
-      const res = await axios.get(
-        "https://test.3scorers.com/api/v1/admin/get-users",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-        }
+      const res = await Axios.get("/admin/get-users");
+      const filteredUsers = res.data.data.filter(
+        (item) => item.role === "user"
       );
+      const filteredAdmins = res.data.data.filter(
+        (item) => item.role === "admin"
+      );
+
+      setUsers(filteredUsers);
+      setAdmins(filteredAdmins);
     } catch (error) {
+      navigate("/login");
       console.log(error.message);
     }
   };
-  fetchUser();
+  func();
+
+  //   if (users?.length == 0) {
+  //     console.log("entered");
+  //     dispatch(allUsersSuccess());
+  //     const { loading } = useSelector((state) => state.allUsers);
+
+  //     console.log(loading);
+  //   }
+
+  //   console.log("users: ", users);
 
   return (
     <>
@@ -157,63 +179,43 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
           <Flex flexDirection={"column"} sx={outSideRight}>
             <Text sx={textDown}>List Of Users</Text>
             <Container sx={cardList}>
-              {/* <Stack mt={"25px"}>
-                <Skeleton height="56px" />
-                <Skeleton height="56px" />
-                <Skeleton height="56px" />
-                <Skeleton height="56px" />
-                <Skeleton height="56px" />
-                <Skeleton height="56px" />
-              </Stack> */}
-              {/* {res &&
-                res.data?.map((user) => (
-                  <UserListItem key={user.id} username={user?.username} />
-                ))} */}
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              {/* <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem /> */}
+              {users.length == 0 ? (
+                <Stack mt={"25px"}>
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                </Stack>
+              ) : (
+                users?.map((user, i) => (
+                  <UserListItem
+                    key={i}
+                    firstName={user.firstName}
+                    lastName={user.lastName}
+                  />
+                ))
+              )}
             </Container>
           </Flex>
           <Flex flexDirection={"column"} sx={outSideRight}>
             <Text sx={textDown}>List Of Admins</Text>
             <Container sx={cardList}>
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
-              <UserListItem />
+              {users.length == 0 ? (
+                <Stack mt={"25px"}>
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                  <Skeleton height="56px" />
+                </Stack>
+              ) : (
+                admins?.map((admin, i) => (
+                  <UserListItem key={i} username={admin.username} />
+                ))
+              )}
             </Container>
           </Flex>
         </Flex>

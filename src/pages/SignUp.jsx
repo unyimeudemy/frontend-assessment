@@ -17,6 +17,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Form, useNavigate } from "react-router-dom";
 import { loginFailure, loginSuccess } from "../redux/slices/userSlice";
+import { overview } from "../redux/slices/changeTabSlices";
 
 export default function SignUp() {
   const loginText1 = {
@@ -116,9 +117,9 @@ export default function SignUp() {
           repeat_password,
         }
       );
-      navigate("/");
       dispatch(loginSuccess(res.data));
-      console.log(res);
+      dispatch(overview());
+      navigate("/");
     } catch (err) {
       dispatch(loginFailure());
       console.log(err.message);

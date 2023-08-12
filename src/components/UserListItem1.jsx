@@ -11,7 +11,7 @@ import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import Overview from "../components/Overview";
 
-export default function UserListItem1({ name, imageSrc }) {
+export default function UserListItem1({ firstName, lastName, imageSrc }) {
   const left = {
     colSpan: 1,
     h: "56px",
@@ -71,7 +71,7 @@ export default function UserListItem1({ name, imageSrc }) {
         <GridItem colSpan={6} h={"30px"}>
           <Flex alignItems={"center"} h={"56px"}>
             <Text sx={middle} pl={"16px"}>
-              {name}
+              {`${firstName}  ${lastName}`}
             </Text>
           </Flex>
         </GridItem>

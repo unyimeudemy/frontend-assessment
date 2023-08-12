@@ -5,11 +5,15 @@ import Overview from "../components/Overview";
 import UserAndAdmin from "../components/UserAndAdmin";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import Axios from "../lib/api/axios";
 
 export default function Dashboard() {
   const { tab } = useSelector((state) => state.changeTab);
   const { currentUser } = useSelector((state) => state.user);
-  console.log("currentUser: ", currentUser.data.user);
+
+  ////////////////////////////////////////////////////////
+
+  /////////////////////////////////////////////////////////////
 
   //   const dispatch = useDispatch();
 

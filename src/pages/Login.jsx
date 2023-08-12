@@ -19,6 +19,7 @@ import {
   loginStart,
 } from "../redux/slices/userSlice";
 import Axios from "../lib/api/axios";
+import { overview } from "../redux/slices/changeTabSlices";
 
 export default function Login() {
   const container = {
@@ -64,8 +65,8 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("login clicked");
-    console.log(email, password);
+    // console.log("login clicked");
+    // console.log(email, password);
     dispatch(loginStart());
 
     try {
@@ -76,8 +77,8 @@ export default function Login() {
       });
       dispatch(loginSuccess(res.data));
       localStorage.setItem("AccessToken", `Bearer ${res.data.accessToken}`);
+      dispatch(overview());
       navigate("/");
-      //   console.log(res);
     } catch (err) {
       dispatch(loginFailure());
       console.log(err.message);
@@ -132,4 +133,4 @@ export default function Login() {
 //     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJpYXQiOjE2OTE3NTA4MjIsImV4cCI6MTY5MTkyMzYyMn0.FD3YFlKFJV0ROzCXbJxhmIloGp3LS62k7HXzH4yV86E"
 // }
 
-// "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTE3NjQwNTUsImV4cCI6MTY5MTc2NzY1NX0.o8lgvcPlnyFIYhEpoViLxXsx-OrG2tsR_L-VHYCs5Bs",
+// "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTE4NTMwMDksImV4cCI6MTY5MTg1NjYwOX0.7wMtZcMaaIwmCad6C6deH25Eg9T59ndNDEZhxW-Px9M",

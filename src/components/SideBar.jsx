@@ -8,10 +8,6 @@ import {
 } from "../redux/slices/changeTabSlices";
 
 export default function SideBar() {
-  const dispatch = useDispatch();
-  const { tab } = useSelector((state) => state.changeTab);
-  console.log("tabV: ", tab);
-
   const sideBar = {
     flexDirection: "column",
     alignItems: "center",
@@ -69,6 +65,9 @@ export default function SideBar() {
       color: "#303030",
     },
   };
+
+  const dispatch = useDispatch();
+  const { tab } = useSelector((state) => state.changeTab);
 
   return (
     <Flex sx={sideBar}>
