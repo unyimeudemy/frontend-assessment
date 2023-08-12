@@ -50,7 +50,7 @@ export default function Logout() {
     <Flex sx={container}>
       <Flex sx={wrapper}>
         <Image src={"/public/logo.png"} />
-        <Text sx={text}>Are sure you logout?</Text>
+        <Text sx={text}>Sure you want to logout?</Text>
         <Flex gap={"30px"}>
           <Button
             onClick={() => {

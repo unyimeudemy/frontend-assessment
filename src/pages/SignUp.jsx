@@ -205,18 +205,3 @@ export default function SignUp() {
     </Grid>
   );
 }
-
-// {
-//     "success": true,
-//     "data": {
-//         "id": 125,
-//         "firstName": "unyime",
-//         "lastName": "udoh",
-//         "email": "unyimeudoh20@gmail.com",
-//         "username": "unyime",
-//         "role": "admin",
-//         "updatedAt": "2023-08-11T10:01:51.643Z",
-//         "createdAt": "2023-08-11T10:01:51.643Z"
-//     },
-//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTE3NDgxMTEsImV4cCI6MTY5MTkyMDkxMX0.pELTC7gisMyQPzPfKrTPTwv3DRgJwMfczwdiT4r-RoU"
-// }

@@ -119,20 +119,4 @@ export default function Login() {
   );
 }
 
-// {
-//     "success": true,
-//     "data": {
-//         "id": 125,
-//         "firstName": "unyime",
-//         "lastName": "udoh",
-//         "email": "unyimeudoh20@gmail.com",
-//         "username": "unyime",
-//         "role": "admin",
-//         "createdAt": "2023-08-11T10:01:51.643Z",
-//         "updatedAt": "2023-08-11T10:01:51.643Z"
-//     },
-//     "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTE3NTA4MjIsImV4cCI6MTY5MTc1NDQyMn0.k8DoZpFT0b1EaUnPTbdJkOu7jewAvC2QRJrSwgR7gPA",
-//     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJpYXQiOjE2OTE3NTA4MjIsImV4cCI6MTY5MTkyMzYyMn0.FD3YFlKFJV0ROzCXbJxhmIloGp3LS62k7HXzH4yV86E"
-// }
-
 // "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTE4NTMwMDksImV4cCI6MTY5MTg1NjYwOX0.7wMtZcMaaIwmCad6C6deH25Eg9T59ndNDEZhxW-Px9M",
