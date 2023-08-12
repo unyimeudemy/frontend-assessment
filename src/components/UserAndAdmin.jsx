@@ -129,14 +129,12 @@ export default function UserAndAdmin({
           const filteredAdmins = res.data.data.filter(
             (item) => item.role === "admin"
           );
-          console.log("filteredAdmins: ");
           setUsersAndAdmins(filteredAdmins);
         } else {
           const res = await Axios.get("/admin/get-users");
           const filteredUsers = res.data.data.filter(
             (item) => item.role === "user"
           );
-          console.log("filteredUsers: ");
           setUsersAndAdmins(filteredUsers);
         }
       } catch (err) {

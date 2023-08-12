@@ -16,7 +16,11 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Form, useNavigate } from "react-router-dom";
-import { loginFailure, loginSuccess } from "../redux/slices/userSlice";
+import {
+  loginFailure,
+  loginStart,
+  loginSuccess,
+} from "../redux/slices/userSlice";
 import { overview } from "../redux/slices/changeTabSlices";
 
 export default function SignUp() {
@@ -130,7 +134,7 @@ export default function SignUp() {
     <Grid templateColumns={"repeat(6, 1fr)"}>
       <GridItem colSpan={3} bg={"#008F8F"} h={"100vh"}>
         <Flex sx={contentFlexRight}>
-          <Image src={"/public/logo.png"} sx={logo} />
+          <Image src={"/public/logo.png"} sx={logo} mb={"40px"} />
           <Text sx={loginText1}>Create Account</Text>
           <Text sx={loginText2}>
             Join the community and have fun predicting!
@@ -190,7 +194,7 @@ export default function SignUp() {
                 />
               </FormControl>
             </Form>
-            <Flex justifyContent={"center"} alignItems={"center"} flex={1}>
+            <Flex justifyContent={"center"} ml={"100px"}>
               <Button sx={button} onClick={handleSignUp}>
                 Sign up
               </Button>

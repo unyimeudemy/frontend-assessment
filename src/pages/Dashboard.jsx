@@ -6,16 +6,18 @@ import UserAndAdmin from "../components/UserAndAdmin";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Axios from "../lib/api/axios";
+import Logout from "../components/Logout";
+import { useState } from "react";
 
 export default function Dashboard() {
-  const { tab } = useSelector((state) => state.changeTab);
-  const { currentUser } = useSelector((state) => state.user);
-
   ////////////////////////////////////////////////////////
 
   /////////////////////////////////////////////////////////////
 
   //   const dispatch = useDispatch();
+  const { tab } = useSelector((state) => state.changeTab);
+  const { currentUser } = useSelector((state) => state.user);
+  const [logoutStatus, setLogoutStatus] = useState(false);
 
   if (tab === "overview") {
     return (
@@ -73,7 +75,7 @@ export default function Dashboard() {
           <SideBar />
         </GridItem>
         <GridItem>
-          <Text fontSize={"50px"}>Logout</Text>
+          <Logout />
         </GridItem>
       </Grid>
     );
