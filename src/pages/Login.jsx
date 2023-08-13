@@ -22,6 +22,12 @@ import {
 import Axios from "../lib/api/axios";
 import { overview } from "../redux/slices/changeTabSlices";
 
+/**
+ *
+ * @returns {JSX.Element} - Returns the login page and on login successful,
+ * user is redirected to dashboard ( overview tab )
+ */
+
 export default function Login() {
   const container = {
     bg: " #008F8F",
@@ -74,12 +80,24 @@ export default function Login() {
         email,
         password,
       });
+
+      /**
+       * on successful login,
+       * -> current user detail is stored in userSlice.js
+       * -> accessToken is stored to keep user logged in.
+       * -> tabStatus is set to overview so that user will be redirected
+       *    overview page on login complete.
+       */
       dispatch(loginSuccess(res.data));
       localStorage.setItem("AccessToken", `Bearer ${res.data.accessToken}`);
       dispatch(overview());
       console.log("loading: ", loading);
       navigate("/");
     } catch (err) {
+      /**
+       * If any error occurs, loginFailure is called to ensure user is redirected
+       * to login to login page to try login again.
+       */
       dispatch(loginFailure());
       console.log(err.message);
     }
@@ -118,5 +136,3 @@ export default function Login() {
     </Flex>
   );
 }
-
-// "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJlbWFpbCI6InVueWltZXVkb2gyMEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTE4NTMwMDksImV4cCI6MTY5MTg1NjYwOX0.7wMtZcMaaIwmCad6C6deH25Eg9T59ndNDEZhxW-Px9M",

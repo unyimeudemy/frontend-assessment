@@ -4,6 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { overview } from "../redux/slices/changeTabSlices";
 
+/**
+ *
+ * @returns {JSX.Element} - This is returns a logout prompt that popups.
+ * The cancel button redirects to overview tab while logout button clears the
+ * token on the local storage , redirects the overview tab which at this point
+ * will redirect the login page since the overview component is protected.
+ */
+
 export default function Logout() {
   const container = {
     width: "100%",

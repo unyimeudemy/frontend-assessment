@@ -7,6 +7,10 @@ import allUsersReducer from "../redux/slices/allUsersSlice.js";
 import allAdminsReducer from "../redux/slices/allAdminsSlice.js";
 import popUpStatusReducer from "../redux/slices/popUpStatusSlice.js";
 
+/**
+ * This file manages all the redux stores in this app that are
+ * used for state management.
+ */
 const persistConfig = {
   key: "root",
   version: 1,

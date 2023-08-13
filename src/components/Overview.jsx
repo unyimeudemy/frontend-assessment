@@ -9,6 +9,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { allUsersSuccess } from "../redux/slices/allUsersSlice";
 import { useNavigate } from "react-router-dom";
 
+/**
+ *
+ * @param {string} navBarTitle - this is from Dashboard.jsx
+ * @param {string} adminUsername  - this is from Dashboard.jsx
+ * @param {string} status  - this is from Dashboard.jsx
+ * @returns {JSX.Element} - returns a component that displays two
+ * different list. One for users and the other for admins. Each of this list
+ * uses the component from UserListItem.jsx and it also has a loading
+ * screen to reduce load time frustration for users.
+ */
+
 export default function Overview({ navBarTitle, adminUsername, status }) {
   const container = {
     // width: "1440px",
@@ -113,6 +124,13 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
   const [admins, setAdmins] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  /**
+   * Here we get all the user and then filter by "role = user"
+   * and "role = admin". Then we send each filtered data to the
+   * appropriate card and then use <UserAndAdmin/> component to
+   * display them as a list.
+   */
 
   const func = async () => {
     try {

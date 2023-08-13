@@ -1,6 +1,15 @@
 import { Flex, Grid, GridItem, Heading, Spacer, Text } from "@chakra-ui/react";
 import SideBar from "../components/SideBar";
 
+/**
+ *
+ * @param {string} navBarTitle - This is either coming from Overview or UserAndAdmin component
+ * @param {string} adminUsername  - This is either coming from Overview or UserAndAdmin component
+ * @param {string} status  - This is either coming from Overview or UserAndAdmin component
+ * @returns {JSX.Element} - This returns a component that shows which tab is being viewed and
+ * the and name of the username and status of the current user.
+ */
+
 export default function NavBar({ navBarTitle, adminUsername, status }) {
   const flex = {
     flexDirection: "spread-around",

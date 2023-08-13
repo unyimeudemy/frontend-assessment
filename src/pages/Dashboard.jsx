@@ -9,15 +9,24 @@ import Axios from "../lib/api/axios";
 import Logout from "../components/Logout";
 import { useState } from "react";
 
+/**
+ *
+ * @returns {JSX.Element} - Returns a react component that is
+ * displayed based on the tab that is clicked on the side
+ * bar.
+ */
+
 export default function Dashboard() {
-  ////////////////////////////////////////////////////////
-
-  /////////////////////////////////////////////////////////////
-
-  //   const dispatch = useDispatch();
+  /**
+   *@property {tab} - Is the value of tab from changeTabSlices.js
+   * which depends on the tab just clicked.
+   */
   const { tab } = useSelector((state) => state.changeTab);
+
+  /**
+   * @property {tab} - Is the detail of the currently logged in users
+   */
   const { currentUser } = useSelector((state) => state.user);
-  const [logoutStatus, setLogoutStatus] = useState(false);
 
   if (tab === "overview") {
     return (

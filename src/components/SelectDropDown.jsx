@@ -2,6 +2,19 @@ import { Container, Flex, Select, Text } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { active, all, inActive } from "../redux/slices/popUpStatusSlice";
 
+/**
+ *
+ * @param {string} popUpStatus - this is from UserAndAdmin.jsx
+ * @returns {JSX.Element} - returns a popup component that is used
+ * to filter the users or admins by those still active or inactive in
+ * the users and admins panel respectively.
+ *
+ * Here on click of any option, the popUpStatus hook is updated in
+ * UserAndAdmin.jsx to close the popup. The UI of the dropdown
+ * button is updated to reflect the option just chosen in the list by
+ * calling the corresponding function in the popUpStatusSlice.js
+ */
+
 export default function SelectDropDown({ popUpStatus, setPopUpStatus }) {
   const container = {
     flexDirection: "column",

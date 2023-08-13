@@ -11,6 +11,14 @@ import {
 import { Search2Icon } from "@chakra-ui/icons";
 import { useLocation } from "react-router-dom";
 
+/**
+ *
+ * @param {string} searchPlaceHolder - gotten from UserAndAdmin.jsx
+ * @returns {JSX.Element} - returns a search component that is used for
+ * searching users and admins in users and admin panel that are listed on
+ * dashboard.
+ */
+
 export default function SearchBar({ searchPlaceHolder }) {
   const searchBar = {
     borderRadius: "5px",

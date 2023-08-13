@@ -11,6 +11,15 @@ import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import Overview from "../components/Overview";
 
+/**
+ *
+ * @param {string} firstName - this gotten from UserAndAdmin.jsx component
+ * @param {string} lastname -this gotten from UserAndAdmin.jsx component
+ * @param {string} imageSrc -this gotten from UserAndAdmin.jsx component
+ * @returns {JSX.Element} - returns a react component that is used to diplay
+ * all the users and admins in the users and admins tab of the dashboard respectively.
+ */
+
 export default function UserListItem1({ firstName, lastName, imageSrc }) {
   const left = {
     colSpan: 1,

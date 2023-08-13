@@ -25,6 +25,21 @@ import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { all } from "../redux/slices/popUpStatusSlice";
 
+/**
+ *
+ * @param {string} navBarTitle - This is gotten when component was called in  dashboard
+ * @param {string} adminUsername- This is gotten when component was called in  dashboard
+ * @param {string} status  - This is gotten when component was called in  dashboard
+ * @param {string} searchPlaceHolder - This is gotten when component was called in  dashboard
+ * @param {string} listTitle - This is gotten when component was called in  dashboard
+ *
+ * @returns {JSX.Element} - returns a react component that serves as the
+ * the list container for users and admins list in both users and admins
+ * tab of the dashboard respectively. This is done by using the component in
+ *  userListItem1.jsx.
+ *
+ */
+
 export default function UserAndAdmin({
   navBarTitle,
   adminUsername,
@@ -120,6 +135,18 @@ export default function UserAndAdmin({
   const [popUpStatus, setPopUpStatus] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  /**
+   * In the react hook, a request is made to backend and the data
+   * gotten is filtered by those with "role = admin" and "role = user"
+   * separately. The filtered data is stored in a useState hook and then
+   * used to update the UI.
+   *
+   * If the fetching process is unsuccessful due to authentication issue,
+   * user is redirected to login page.
+   *
+   * The filter option popup is also rendered here outside the main component
+   */
 
   useEffect(() => {
     const func = async () => {

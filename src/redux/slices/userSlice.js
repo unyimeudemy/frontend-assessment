@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/**
+ * This is used to store the details of the current user
+ * that owns the account. It is called on signup and on
+ * login
+ */
+
 const initialState = {
   currentUser: null,
   loading: false,
@@ -23,6 +29,10 @@ export const userSlice = createSlice({
       state.error = true;
     },
 
+    /**
+     * This is called on logout so that all variable can be emptied
+     * and every UI reset.
+     */
     logout: (state) => {
       state.currentUser = null;
       state.loading = false;

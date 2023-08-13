@@ -9,6 +9,15 @@ import {
 import { useState } from "react";
 import Logout from "./Logout";
 
+/**
+ *
+ * @returns {JSX.Element} - returns a side bar that is used to change
+ * the tabs on the dashboard.
+ *
+ * Onclick of a tab, the identity of the current tab is registered in
+ * changeTabSlices.js so that the appropriate page can be displayed.
+ */
+
 export default function SideBar() {
   const sideBar = {
     flexDirection: "column",

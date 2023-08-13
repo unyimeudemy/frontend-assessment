@@ -24,6 +24,12 @@ import {
 } from "../redux/slices/userSlice";
 import { overview } from "../redux/slices/changeTabSlices";
 
+/**
+ *
+ * @returns {JSX.Element} - returns the signup page and on
+ * successful signup, user is redirected to dashboard.
+ */
+
 export default function SignUp() {
   const loginText1 = {
     color: "#FFF",
@@ -104,6 +110,15 @@ export default function SignUp() {
 
   const navigate = useNavigate();
   const { loading } = useSelector((state) => state.user);
+
+  /**
+   * on success signup,
+   * -> current user's data is stored in userSlice.js
+   * -> value of tab to display in  changeTabSlices.js is changed
+   *    to overview
+   * -> user is redirected to dashboard.
+   *
+   */
 
   const handleSignUp = async (e) => {
     e.preventDefault();
