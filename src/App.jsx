@@ -16,7 +16,7 @@ const accessToken = localStorage.getItem("AccessToken");
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" element={<RootLayout />} basename="/">
       <Route index element={<Dashboard />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<Login />} />
