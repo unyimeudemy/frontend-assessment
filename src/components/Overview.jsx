@@ -23,7 +23,7 @@ import { useNavigate } from "react-router-dom";
 export default function Overview({ navBarTitle, adminUsername, status }) {
   const container = {
     // width: "1440px",
-    height: "140vh",
+    height: "924px",
     bg: "#F4F4F4",
     flexDirection: "column",
   };
