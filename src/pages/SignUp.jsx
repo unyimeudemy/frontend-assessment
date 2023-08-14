@@ -149,7 +149,7 @@ export default function SignUp() {
     <Grid templateColumns={"repeat(6, 1fr)"}>
       <GridItem colSpan={3} bg={"#008F8F"} h={"100vh"}>
         <Flex sx={contentFlexRight}>
-          <Image src={"/public/logo.png"} sx={logo} mb={"40px"} />
+          <Image src={"/logo.png"} sx={logo} mb={"40px"} />
           <Text sx={loginText1}>Create Account</Text>
           <Text sx={loginText2}>
             Join the community and have fun predicting!

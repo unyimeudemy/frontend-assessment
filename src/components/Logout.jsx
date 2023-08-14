@@ -58,7 +58,7 @@ export default function Logout() {
   return (
     <Flex sx={container}>
       <Flex sx={wrapper}>
-        <Image src={"/public/logo.png"} />
+        <Image src={"/logo.png"} />
         <Text sx={text}>Sure you want to logout?</Text>
         <Flex gap={"30px"}>
           <Button

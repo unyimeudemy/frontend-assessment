@@ -86,14 +86,14 @@ export default function SideBar() {
   return (
     <>
       <Flex sx={sideBar}>
-        <Image src={"/public/logo.png"} sx={logo} />
+        <Image src={"/logo.png"} sx={logo} />
         <Divider sx={divider} />
         <Flex
           sx={tabV}
           bg={tab === "overview" && "#51FFFF"}
           onClick={() => dispatch(overview())}
         >
-          <Image src={"/public/whiteOverviewIcon.svg"} sx={icon} />
+          <Image src={"/whiteOverviewIcon.svg"} sx={icon} />
           <Text sx={text}>Overview</Text>
         </Flex>
         <Flex
@@ -101,7 +101,7 @@ export default function SideBar() {
           onClick={() => dispatch(users())}
           bg={tab === "users" && "#51FFFF"}
         >
-          <Image src={"/public/users.svg"} sx={icon} />
+          <Image src={"/users.svg"} sx={icon} />
           <Text sx={text} ml={"10px"}>
             Users
           </Text>
@@ -111,7 +111,7 @@ export default function SideBar() {
           onClick={() => dispatch(admins())}
           bg={tab === "admins" && "#51FFFF"}
         >
-          <Image src={"/public/Admin.svg"} sx={icon} />
+          <Image src={"/Admin.svg"} sx={icon} />
           <Text sx={text}>Admins</Text>
         </Flex>
         <Flex
@@ -120,7 +120,7 @@ export default function SideBar() {
           bg={tab === "logout" && "#51FFFF"}
           color={tab === "logout" && "#303030"}
         >
-          <Image src={"/public/Logout.svg"} sx={icon} />
+          <Image src={"/Logout.svg"} sx={icon} />
           <Text sx={text}>Logout</Text>
         </Flex>
       </Flex>

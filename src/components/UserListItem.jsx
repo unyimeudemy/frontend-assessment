@@ -43,7 +43,7 @@ export default function UserListItem({ firstName, lastName }) {
   return (
     <Grid templateColumns={"repeat(9, 1fr)"} marginY={"24px"} ml={"41px"}>
       <GridItem sx={left}>
-        <Image src="/public/profilePic.png" />
+        <Image src="/profilePic.png" />
       </GridItem>
       <GridItem colSpan={6} h={"30px"}>
         <Flex alignItems={"center"} h={"56px"}>

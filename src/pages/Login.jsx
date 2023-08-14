@@ -106,7 +106,7 @@ export default function Login() {
 
   return (
     <Flex sx={container}>
-      <Image src={"/public/logo.png"} sx={logo} />
+      <Image src={"/logo.png"} sx={logo} />
       <Container sx={innerCard}>
         <Form width={"auto"}>
           <FormControl mb="10px" mt={"70px"}>

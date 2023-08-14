@@ -191,7 +191,7 @@ export default function UserAndAdmin({
               <Spacer />
               <Flex sx={popUp} onClick={() => setPopUpStatus(!popUpStatus)}>
                 <Text sx={popUpText}>{txt}</Text>
-                <Image src={"/public/arrowDown.svg"} sx={arrowDown} />
+                <Image src={"/arrowDown.svg"} sx={arrowDown} />
               </Flex>
             </Flex>
             <Flex bg={"#FFF"} h={"78px"}>
@@ -216,7 +216,7 @@ export default function UserAndAdmin({
                     key={i}
                     firstName={userOrAdmin.firstName}
                     lastName={userOrAdmin.lastName}
-                    imageSrc={"/public/profilePic.png"}
+                    imageSrc={"/profilePic.png"}
                   />
                 ))
               )}

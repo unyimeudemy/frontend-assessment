@@ -169,7 +169,7 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
             </Flex>
             <Flex alignItems={"center"}>
               <Flex sx={icon}>
-                <Image src={"/public/usersIcon.svg"} />
+                <Image src={"/usersIcon.svg"} />
               </Flex>
             </Flex>
           </Flex>
@@ -180,7 +180,7 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
             </Flex>
             <Flex alignItems={"center"}>
               <Flex sx={icon}>
-                <Image src={"/public/adminIcon.svg"} />
+                <Image src={"/adminIcon.svg"} />
               </Flex>
             </Flex>
           </Flex>
