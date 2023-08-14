@@ -145,7 +145,7 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
       setUsers(filteredUsers);
       setAdmins(filteredAdmins);
     } catch (error) {
-      if (err.message == "Request failed with status code 401") {
+      if (error.message == "Request failed with status code 401") {
         console.log("not authenticated");
         navigate("/login");
       }

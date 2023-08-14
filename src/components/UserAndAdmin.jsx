@@ -164,8 +164,8 @@ export default function UserAndAdmin({
           );
           setUsersAndAdmins(filteredUsers);
         }
-      } catch (err) {
-        if (err.message == "Request failed with status code 401") {
+      } catch (error) {
+        if (error.message == "Request failed with status code 401") {
           console.log("not authenticated");
           navigate("/login");
         }

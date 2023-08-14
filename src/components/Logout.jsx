@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { overview } from "../redux/slices/changeTabSlices";
+import userSlice, { logout } from "../redux/slices/userSlice";
 
 /**
  *
@@ -64,6 +65,7 @@ export default function Logout() {
           <Button
             onClick={() => {
               localStorage.removeItem("AccessToken");
+              dispatch(logout());
               dispatch(overview());
             }}
           >
