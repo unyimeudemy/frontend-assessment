@@ -26,7 +26,7 @@ export default function SelectDropDown({ popUpStatus, setPopUpStatus }) {
     // gap: "31px",
     position: "absolute",
     // right: "80px",
-    right: "50px",
+    right: "5px",
     top: "213px",
     zIndex: 1,
     boxShadow: "0px 4px 24px 0px rgba(172, 172, 172, 0.25)",
