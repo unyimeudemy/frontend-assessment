@@ -42,6 +42,7 @@ export default function Logout() {
     right: "0px",
     alignItems: "center",
     justifyContent: "center",
+    boxShadow: "10px 4px 24px 0px rgba(172, 172, 172, 0.25)",
   };
 
   const text = {

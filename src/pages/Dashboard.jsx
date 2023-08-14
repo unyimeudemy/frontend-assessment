@@ -24,7 +24,7 @@ export default function Dashboard() {
   const { tab } = useSelector((state) => state.changeTab);
 
   /**
-   * @property {tab} - Is the detail of the currently logged in users
+   * @property {currenUser} - Is the detail of the currently logged in users
    */
   const { currentUser } = useSelector((state) => state.user);
 

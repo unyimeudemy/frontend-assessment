@@ -135,18 +135,20 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
   const func = async () => {
     try {
       const res = await Axios.get("/admin/get-users");
-      const filteredUsers = res.data.data.filter(
+      const filteredUsers = res?.data?.data.filter(
         (item) => item.role === "user"
       );
-      const filteredAdmins = res.data.data.filter(
+      const filteredAdmins = res?.data?.data.filter(
         (item) => item.role === "admin"
       );
 
       setUsers(filteredUsers);
       setAdmins(filteredAdmins);
     } catch (error) {
-      navigate("/login");
-      console.log(error.message);
+      if (err.message == "Request failed with status code 401") {
+        console.log("not authenticated");
+        navigate("/login");
+      }
     }
   };
   func();

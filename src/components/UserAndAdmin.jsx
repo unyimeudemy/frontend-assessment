@@ -147,26 +147,28 @@ export default function UserAndAdmin({
    *
    * The filter option popup is also rendered here outside the main component
    */
-
   useEffect(() => {
     const func = async () => {
       try {
         if (navBarTitle === "Admins") {
           const res = await Axios.get("/admin/get-users");
-          const filteredAdmins = res.data.data.filter(
+
+          const filteredAdmins = res?.data?.data.filter(
             (item) => item.role === "admin"
           );
           setUsersAndAdmins(filteredAdmins);
         } else {
           const res = await Axios.get("/admin/get-users");
-          const filteredUsers = res.data.data.filter(
+          const filteredUsers = res?.data?.data.filter(
             (item) => item.role === "user"
           );
           setUsersAndAdmins(filteredUsers);
         }
       } catch (err) {
-        navigate("/login");
-        console.log("error: ", err.message);
+        if (err.message == "Request failed with status code 401") {
+          console.log("not authenticated");
+          navigate("/login");
+        }
       }
     };
     func();
