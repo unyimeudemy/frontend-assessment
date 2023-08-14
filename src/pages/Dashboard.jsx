@@ -37,7 +37,7 @@ export default function Dashboard() {
         <GridItem>
           <Overview
             navBarTitle="Overview"
-            adminUsername={currentUser.data.username}
+            adminUsername={currentUser?.data?.username}
             status={currentUser?.data?.role === "admin" ? "Administrator" : ""}
           />
         </GridItem>
@@ -53,7 +53,7 @@ export default function Dashboard() {
           <UserAndAdmin
             searchPlaceHolder="Search for Admins"
             navBarTitle="Admins"
-            adminUsername={currentUser.data.username}
+            adminUsername={currentUser?.data?.username}
             status={currentUser?.data?.role === "admin" ? "Administrator" : ""}
             listTitle="Admin’s Name"
           />
@@ -70,7 +70,7 @@ export default function Dashboard() {
           <UserAndAdmin
             searchPlaceHolder="Search for Users"
             navBarTitle="Users"
-            adminUsername={currentUser.data.username}
+            adminUsername={currentUser?.data?.username}
             status={currentUser?.data?.role === "admin" ? "Administrator" : ""}
             listTitle="User’s Name"
           />
