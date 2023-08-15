@@ -5,6 +5,7 @@ import {
   Container,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Grid,
   GridItem,
@@ -23,6 +24,7 @@ import {
   loginSuccess,
 } from "../redux/slices/userSlice";
 import { overview } from "../redux/slices/changeTabSlices";
+import { Field, Formik } from "formik";
 
 /**
  *
@@ -78,11 +80,12 @@ export default function SignUp() {
     height: "100vh",
   };
   const contentFlexLeft = {
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
     flexDirection: "column",
     margin: 0,
     height: "50vh",
+    mt: "30px",
   };
 
   const button = {
@@ -99,17 +102,41 @@ export default function SignUp() {
     bg: "#008F8F",
   };
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [username, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+  const errorMessage = {
+    height: "40px",
+    width: "330px",
+    bg: "#ffe6e6",
+    ml: "150px",
+    mb: "10px",
+    borderRadius: "5px",
+    border: "1px solid red",
+
+    alignItems: "center",
+    justifyContent: "center",
+  };
+
+  const errorText = {
+    fontFamily: "roboto",
+    fontSize: "sm",
+    color: "#cc0000",
+  };
+
+  const link = {
+    fontSize: "smaller",
+    ml: "100px",
+    pt: "10px",
+    color: "#008F8F",
+    cursor: "pointer",
+  };
+
+  const [ErrorMessage, setErrorMessage] = useState("");
+  const [errorCard, setErrorCard] = useState(false);
   const [password, setPassword] = useState("");
-  const [repeat_password, setPasswordConfirm] = useState("");
+  const [padding, setPadding] = useState("60px");
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const { loading } = useSelector((state) => state.user);
 
   /**
    * on success signup,
@@ -120,10 +147,24 @@ export default function SignUp() {
    *
    */
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
+  const handleSignUp = async ({
+    firstName,
+    lastName,
+    email,
+    username,
+    password,
+    passwordConfirm,
+  }) => {
+    let repeat_password = passwordConfirm;
+    console.log(
+      firstName,
+      lastName,
+      email,
+      username,
+      password,
+      repeat_password
+    );
     dispatch(loginStart());
-
     try {
       const res = await axios.post(
         "https://test.3scorers.com/api/v1/admin/sign-up/?adminId=1",
@@ -136,12 +177,20 @@ export default function SignUp() {
           repeat_password,
         }
       );
+      console.log(res.data.token);
       dispatch(loginSuccess(res.data));
+      localStorage.setItem("AccessToken", `Bearer ${res.data.token}`);
+
       dispatch(overview());
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       dispatch(loginFailure());
-      console.log(err.message);
+      console.log("error", err.message);
+      setPadding("30px");
+      setErrorCard(true);
+      if (err.message == "Network Error") {
+        setErrorMessage("Check your internet connection");
+      }
     }
   };
 
@@ -158,63 +207,212 @@ export default function SignUp() {
       </GridItem>
       <GridItem colSpan={3} h={"100vh"}>
         <Flex sx={contentFlexLeft} color={"black"}>
-          <Container sx={rightCard}>
-            <Form width={"auto"}>
-              <FormControl mb="10px" width={"450px"}>
-                <FormLabel mb={"0"}>First Name</FormLabel>
-                <Input
-                  type="text"
-                  name="firstName"
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-              </FormControl>
-              <FormControl mb="10px">
-                <FormLabel mb={"0"}>Last Name</FormLabel>
-                <Input
-                  type="text"
-                  name="lastName"
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </FormControl>
-              <FormControl mb="10px">
-                <FormLabel mb={"0"}>Username</FormLabel>
-                <Input
-                  type="text"
-                  name="username"
-                  onChange={(e) => setUserName(e.target.value)}
-                />
-              </FormControl>
-              <FormControl mb="10px">
-                <FormLabel mb={"0"}>Email Address</FormLabel>
-                <Input
-                  type="email"
-                  name="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </FormControl>
-              <FormControl mb="10px">
-                <FormLabel mb={"0"}>Password</FormLabel>
-                <Input
-                  type="password"
-                  name="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </FormControl>
-              <FormControl mb="10px">
-                <FormLabel mb={"0"}>Password Confirm</FormLabel>
-                <Input
-                  type="password"
-                  name="passwordConfirm"
-                  onChange={(e) => setPasswordConfirm(e.target.value)}
-                />
-              </FormControl>
-            </Form>
-            <Flex justifyContent={"center"} ml={"100px"}>
-              <Button sx={button} onClick={handleSignUp}>
-                {loading ? <Spinner size="md" /> : <div>Sign up</div>}
-              </Button>
+          {errorCard && (
+            <Flex sx={errorMessage}>
+              <Text sx={errorText}>{ErrorMessage}</Text>
             </Flex>
-          </Container>
+          )}
+          <Formik
+            width={"auto"}
+            initialValues={{
+              firstName: "",
+              lastName: "",
+              username: "",
+              email: "",
+              password: "",
+              passwordConfirm: "",
+            }}
+            onSubmit={(values) => {
+              //   console.log("valuesssssssssss: ", values);
+              handleSignUp(values);
+            }}
+          >
+            {({ handleSubmit, errors, touched, isSubmitting }) => (
+              <Container sx={rightCard}>
+                <form onSubmit={handleSubmit}>
+                  <FormControl
+                    isRequired
+                    mb="10px"
+                    isInvalid={!!errors.firstName && touched.firstName}
+                  >
+                    <FormLabel htmlFor="FirstName" mb={"0"}>
+                      First Name
+                    </FormLabel>
+                    <Field
+                      as={Input}
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      placeholder="First Name"
+                      variant="filled"
+                      validate={(value) => {
+                        let error;
+                        if (!value) {
+                          error = "First name is required";
+                        }
+                        return error;
+                      }}
+                    />
+                    <FormErrorMessage>{errors.firstName}</FormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    isRequired
+                    mb="10px"
+                    isInvalid={!!errors.lastName && touched.lastName}
+                  >
+                    <FormLabel htmlFor="lastName" mb={"0"}>
+                      Last Name
+                    </FormLabel>
+                    <Field
+                      as={Input}
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      placeholder="Last Name"
+                      variant="filled"
+                      validate={(value) => {
+                        let error;
+                        if (!value) {
+                          error = "Last name is required";
+                        }
+                        return error;
+                      }}
+                    />
+                    <FormErrorMessage>{errors.lastName}</FormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    isRequired
+                    mb="10px"
+                    isInvalid={!!errors.username && touched.username}
+                  >
+                    <FormLabel htmlFor="username" mb={"0"}>
+                      Username
+                    </FormLabel>
+                    <Field
+                      as={Input}
+                      id="username"
+                      name="username"
+                      type="text"
+                      placeholder="Username"
+                      variant="filled"
+                      validate={(value) => {
+                        let error;
+                        if (!value) {
+                          error = "Username is required";
+                        }
+                        return error;
+                      }}
+                    />
+                    <FormErrorMessage>{errors.username}</FormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    isRequired
+                    mb="10px"
+                    isInvalid={!!errors.email && touched.email}
+                  >
+                    <FormLabel htmlFor="email" mb={"0"}>
+                      Email Address
+                    </FormLabel>
+                    <Field
+                      as={Input}
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Email Address"
+                      variant="filled"
+                      validate={(value) => {
+                        console.log("isSubmitting: ", isSubmitting);
+                        let error;
+                        if (!value) {
+                          error = "Email is required";
+                        } else if (
+                          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+                            value
+                          )
+                        ) {
+                          error = "Invalid email address";
+                        }
+                        return error;
+                      }}
+                    />
+                    <FormErrorMessage>{errors.email}</FormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    isRequired
+                    mb="10px"
+                    isInvalid={!!errors.password && touched.password}
+                  >
+                    <FormLabel htmlFor="password" mb={"0"}>
+                      Password
+                    </FormLabel>
+                    <Field
+                      as={Input}
+                      id="password"
+                      name="password"
+                      type="password"
+                      placeholder="Password "
+                      variant="filled"
+                      validate={(value) => {
+                        let error;
+                        console.log("error: ", error);
+                        if (value.length < 6) {
+                          error = "Password must contain at least 6 characters";
+                        }
+                        setPassword(value);
+
+                        return error;
+                      }}
+                    />
+                    <FormErrorMessage>{errors.password}</FormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    isRequired
+                    mb="10px"
+                    isInvalid={
+                      !!errors.passwordConfirm && touched.passwordConfirm
+                    }
+                  >
+                    <FormLabel htmlFor="password" mb={"0"}>
+                      Password Confirm
+                    </FormLabel>
+                    <Field
+                      as={Input}
+                      id="repeat_password"
+                      name="passwordConfirm"
+                      type="password"
+                      placeholder="Password Confirm"
+                      variant="filled"
+                      validate={(value) => {
+                        let error;
+                        console.log("error: ", error);
+                        if (value !== password) {
+                          error = "Passwords do not match";
+                        }
+
+                        return error;
+                      }}
+                    />
+                    <FormErrorMessage>
+                      {errors.passwordConfirm}
+                    </FormErrorMessage>
+                  </FormControl>
+                  <Flex marginX={"100px"}>
+                    <Button sx={button} type="submit" disabled={isSubmitting}>
+                      {isSubmitting ? <Spinner size="md" /> : <div>Signup</div>}
+                    </Button>
+                  </Flex>
+                  <Text
+                    sx={link}
+                    onClick={() => {
+                      navigate("/login");
+                    }}
+                  >
+                    Already have an account? Click here to login
+                  </Text>
+                </form>
+              </Container>
+            )}
+          </Formik>
         </Flex>
       </GridItem>
     </Grid>

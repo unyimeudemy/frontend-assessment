@@ -35,7 +35,7 @@ export default function UserListItem1({ firstName, lastName, imageSrc }) {
     fontFamily: "Roboto",
     fontSize: "16px",
     fontStyle: "normal",
-    fontWeightt: 500,
+    fontWeight: 500,
     lineHeight: "24px",
   };
 
@@ -44,14 +44,14 @@ export default function UserListItem1({ firstName, lastName, imageSrc }) {
     fontFamily: "Roboto",
     fontSize: "16px",
     fontStyle: "normal",
-    fontWeightt: 400,
+    fontWeight: 400,
     lineHeight: "24px",
     textAlign: "right",
   };
 
   const detailButton = {
     alignItems: "center",
-    height: "56px",
+    height: "36px",
     display: "inline-flex",
     padding: "8px",
     justifyContent: "center",
@@ -66,7 +66,7 @@ export default function UserListItem1({ firstName, lastName, imageSrc }) {
     fontFamily: "Roboto",
     fontSize: "14px",
     fontStyle: "normal",
-    fontWeightt: 500,
+    fontWeight: 500,
     lineHeight: "20px",
     lineSpacing: "0.1px",
   };

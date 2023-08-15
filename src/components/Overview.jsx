@@ -116,7 +116,7 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
     fontFamily: "Roboto",
     fontSize: "24px",
     fontStyle: "normal",
-    fontWeightt: "600",
+    fontWeight: "600",
     lineHeight: "32px",
   };
 
@@ -152,6 +152,7 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
     }
   };
   func();
+  console.log("admins: ", admins);
 
   return (
     <>
@@ -223,7 +224,11 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
                 </Stack>
               ) : (
                 admins?.map((admin, i) => (
-                  <UserListItem key={i} username={admin.username} />
+                  <UserListItem
+                    key={i}
+                    firstName={admin.firstName}
+                    lastName={admin.lastName}
+                  />
                 ))
               )}
             </Container>

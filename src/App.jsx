@@ -8,8 +8,10 @@ import {
 // layouts and pages
 import RootLayout from "./layouts/RootLayout";
 import Dashboard from "./pages/Dashboard";
-import SignUp from "./pages/SignUp";
+// import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+// import Login from "./pages/Login";
 
 // router and routes
 const accessToken = localStorage.getItem("AccessToken");
@@ -17,8 +19,8 @@ const accessToken = localStorage.getItem("AccessToken");
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} basename="/">
-      <Route index element={<Dashboard />} />
-      <Route path="signup" element={<SignUp />} />
+      <Route index element={<SignUp />} />
+      <Route path="dashboard" element={<Dashboard />} />
       <Route path="login" element={<Login />} />
     </Route>
   )

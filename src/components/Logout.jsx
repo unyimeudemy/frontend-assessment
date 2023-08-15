@@ -31,6 +31,7 @@ export default function Logout() {
     width: "450px",
     height: "360px",
     backgroundColor: "#008F8F",
+    // backgroundColor: "myGreen",
     color: "black",
     padding: "10px",
     display: "flex",
@@ -48,7 +49,8 @@ export default function Logout() {
 
   const text = {
     color: "#E0E0E0",
-    fontFamily: " Roboto",
+    // fontFamily: "myRobo",
+    fontFamily: "Tilt Prism",
     fontSize: "30px",
     fontStyle: "normal",
     fontWeight: "900",

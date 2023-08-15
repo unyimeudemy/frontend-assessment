@@ -76,6 +76,7 @@ export default function SideBar() {
     _hover: {
       // bg: "",
       color: "#303030",
+      fontweight: "600px",
     },
   };
 

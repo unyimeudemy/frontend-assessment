@@ -25,7 +25,7 @@ export default function UserListItem({ firstName, lastName }) {
     fontFamily: "Roboto",
     fontSize: "16px",
     fontStyle: "normal",
-    fontWeightt: 500,
+    fontWeight: 500,
     lineHeight: "24px",
   };
 
@@ -34,7 +34,7 @@ export default function UserListItem({ firstName, lastName }) {
     fontFamily: "Roboto",
     fontSize: "16px",
     fontStyle: "normal",
-    fontWeightt: 400,
+    fontWeight: 400,
     lineHeight: "24px",
     textAlign: "right",
     cursor: "pointer",
