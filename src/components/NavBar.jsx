@@ -69,7 +69,7 @@ export default function NavBar({ navBarTitle, adminUsername, status }) {
 
   return (
     <Flex sx={flex}>
-      <HamburgerIcon boxSize={10} />
+      {/* <HamburgerIcon boxSize={10} /> */}
       <Text sx={right}>{navBarTitle}</Text>
       <Spacer />
       <Flex flexDirection={"column"} m={"27px"}>

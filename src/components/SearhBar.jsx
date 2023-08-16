@@ -10,6 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import {} from "react-router-dom";
 
 /**
  *
@@ -19,7 +21,7 @@ import { useLocation } from "react-router-dom";
  * dashboard.
  */
 
-export default function SearchBar({ searchPlaceHolder }) {
+export default function SearchBar({ searchPlaceHolder, setSearchQ }) {
   const searchBar = {
     borderRadius: "5px",
     width: " 321.606px",
@@ -42,11 +44,13 @@ export default function SearchBar({ searchPlaceHolder }) {
     w: "260px",
   };
 
-  const [searchQ, setSearchQ] = useState("");
+  //   const handleSearch = () => {
+  //     console.log("search clicked: ");
+  //     const currentURL = window.location.href;
+  //     const newURL = `${currentURL}/${searchQ}`;
 
-  const handleSearch = () => {
-    console.log("search clicked: ");
-  };
+  //     window.history.pushState({}, null, newURL);
+  //   };
 
   return (
     <InputGroup sx={searchBar}>
@@ -54,7 +58,7 @@ export default function SearchBar({ searchPlaceHolder }) {
         <Search2Icon
           color="black"
           cursor={"pointer"}
-          onClick={() => handleSearch}
+          //   onClick={() => handleSearch()}
         />
         <Input
           sx={input}

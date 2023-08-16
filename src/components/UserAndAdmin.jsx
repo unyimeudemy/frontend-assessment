@@ -137,6 +137,7 @@ export default function UserAndAdmin({
 
   const [usersAndAdmins, setUsersAndAdmins] = useState([]);
   const [popUpStatus, setPopUpStatus] = useState(false);
+  const [searchQ, setSearchQ] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -151,11 +152,6 @@ export default function UserAndAdmin({
    *
    * The filter option popup is also rendered here outside the main component
    */
-  //   let res;
-  //   const fetchUsers = async () => {
-  //     res = await Axios.get("/admin/get-users");
-  //   };
-  //   fetchUsers();
 
   useEffect(() => {
     const func = async () => {
@@ -166,13 +162,31 @@ export default function UserAndAdmin({
           const filteredAdmins = res?.data?.data.filter(
             (item) => item.role === "admin"
           );
-          setUsersAndAdmins(filteredAdmins);
+
+          if (!!searchQ) {
+            const filteredAdmins = res?.data?.data.filter(
+              (item) => item.firstName === searchQ
+            );
+            setUsersAndAdmins(filteredAdmins);
+          } else {
+            setUsersAndAdmins(filteredAdmins);
+            console.log("filtered admins", filteredAdmins);
+          }
         } else {
           const res = await Axios.get("/admin/get-users");
           const filteredUsers = res?.data?.data.filter(
             (item) => item.role === "user"
           );
-          setUsersAndAdmins(filteredUsers);
+
+          if (!!searchQ) {
+            const filteredUsers = res?.data?.data.filter(
+              (item) => item.firstName === searchQ
+            );
+            setUsersAndAdmins(filteredUsers);
+          } else {
+            setUsersAndAdmins(filteredUsers);
+            console.log("filtered users", filteredUsers);
+          }
         }
       } catch (error) {
         if (error.message == "Request failed with status code 401") {
@@ -182,7 +196,8 @@ export default function UserAndAdmin({
       }
     };
     func();
-  }, [navBarTitle]);
+  }, [navBarTitle, searchQ]);
+  console.log("searchQ in ", !!searchQ);
 
   const { txt } = useSelector((state) => state.popUpStatus);
 
@@ -197,7 +212,10 @@ export default function UserAndAdmin({
         <Flex sx={container}>
           <Flex sx={flex}>
             <Flex sx={top}>
-              <SearchBar searchPlaceHolder={searchPlaceHolder} />
+              <SearchBar
+                searchPlaceHolder={searchPlaceHolder}
+                setSearchQ={setSearchQ}
+              />
               <Spacer />
               <Flex sx={popUp} onClick={() => setPopUpStatus(!popUpStatus)}>
                 <Text sx={popUpText}>{txt}</Text>

@@ -194,226 +194,244 @@ export default function SignUp() {
   };
 
   return (
-    <Grid templateColumns={"repeat(6, 1fr)"}>
-      <GridItem colSpan={3} bg={"#008F8F"} h={"100vh"}>
-        <Flex sx={contentFlexRight}>
-          <Image src={"/logo.png"} sx={logo} mb={"40px"} />
-          <Text sx={loginText1}>Create Account</Text>
-          <Text sx={loginText2}>
-            Join the community and have fun predicting!
-          </Text>
-        </Flex>
-      </GridItem>
-      <GridItem colSpan={3} h={"100vh"}>
-        <Flex sx={contentFlexLeft} color={"black"}>
-          {errorCard && (
-            <Flex sx={errorMessage}>
-              <Text sx={errorText}>{ErrorMessage}</Text>
-            </Flex>
-          )}
-          <Formik
-            width={"auto"}
-            initialValues={{
-              firstName: "",
-              lastName: "",
-              username: "",
-              email: "",
-              password: "",
-              passwordConfirm: "",
-            }}
-            onSubmit={(values) => {
-              //   console.log("valuesssssssssss: ", values);
-              handleSignUp(values);
-            }}
-          >
-            {({ handleSubmit, errors, touched, isSubmitting }) => (
-              <Container sx={rightCard}>
-                <form onSubmit={handleSubmit}>
-                  <FormControl
-                    isRequired
-                    mb="10px"
-                    isInvalid={!!errors.firstName && touched.firstName}
-                  >
-                    <FormLabel htmlFor="FirstName" mb={"0"}>
-                      First Name
-                    </FormLabel>
-                    <Field
-                      as={Input}
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      placeholder="First Name"
-                      variant="filled"
-                      validate={(value) => {
-                        let error;
-                        if (!value) {
-                          error = "First name is required";
-                        }
-                        return error;
-                      }}
-                    />
-                    <FormErrorMessage>{errors.firstName}</FormErrorMessage>
-                  </FormControl>
-                  <FormControl
-                    isRequired
-                    mb="10px"
-                    isInvalid={!!errors.lastName && touched.lastName}
-                  >
-                    <FormLabel htmlFor="lastName" mb={"0"}>
-                      Last Name
-                    </FormLabel>
-                    <Field
-                      as={Input}
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      placeholder="Last Name"
-                      variant="filled"
-                      validate={(value) => {
-                        let error;
-                        if (!value) {
-                          error = "Last name is required";
-                        }
-                        return error;
-                      }}
-                    />
-                    <FormErrorMessage>{errors.lastName}</FormErrorMessage>
-                  </FormControl>
-                  <FormControl
-                    isRequired
-                    mb="10px"
-                    isInvalid={!!errors.username && touched.username}
-                  >
-                    <FormLabel htmlFor="username" mb={"0"}>
-                      Username
-                    </FormLabel>
-                    <Field
-                      as={Input}
-                      id="username"
-                      name="username"
-                      type="text"
-                      placeholder="Username"
-                      variant="filled"
-                      validate={(value) => {
-                        let error;
-                        if (!value) {
-                          error = "Username is required";
-                        }
-                        return error;
-                      }}
-                    />
-                    <FormErrorMessage>{errors.username}</FormErrorMessage>
-                  </FormControl>
-                  <FormControl
-                    isRequired
-                    mb="10px"
-                    isInvalid={!!errors.email && touched.email}
-                  >
-                    <FormLabel htmlFor="email" mb={"0"}>
-                      Email Address
-                    </FormLabel>
-                    <Field
-                      as={Input}
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Email Address"
-                      variant="filled"
-                      validate={(value) => {
-                        console.log("isSubmitting: ", isSubmitting);
-                        let error;
-                        if (!value) {
-                          error = "Email is required";
-                        } else if (
-                          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-                            value
-                          )
-                        ) {
-                          error = "Invalid email address";
-                        }
-                        return error;
-                      }}
-                    />
-                    <FormErrorMessage>{errors.email}</FormErrorMessage>
-                  </FormControl>
-                  <FormControl
-                    isRequired
-                    mb="10px"
-                    isInvalid={!!errors.password && touched.password}
-                  >
-                    <FormLabel htmlFor="password" mb={"0"}>
-                      Password
-                    </FormLabel>
-                    <Field
-                      as={Input}
-                      id="password"
-                      name="password"
-                      type="password"
-                      placeholder="Password "
-                      variant="filled"
-                      validate={(value) => {
-                        let error;
-                        console.log("error: ", error);
-                        if (value.length < 6) {
-                          error = "Password must contain at least 6 characters";
-                        }
-                        setPassword(value);
-
-                        return error;
-                      }}
-                    />
-                    <FormErrorMessage>{errors.password}</FormErrorMessage>
-                  </FormControl>
-                  <FormControl
-                    isRequired
-                    mb="10px"
-                    isInvalid={
-                      !!errors.passwordConfirm && touched.passwordConfirm
-                    }
-                  >
-                    <FormLabel htmlFor="password" mb={"0"}>
-                      Password Confirm
-                    </FormLabel>
-                    <Field
-                      as={Input}
-                      id="repeat_password"
-                      name="passwordConfirm"
-                      type="password"
-                      placeholder="Password Confirm"
-                      variant="filled"
-                      validate={(value) => {
-                        let error;
-                        console.log("error: ", error);
-                        if (value !== password) {
-                          error = "Passwords do not match";
-                        }
-
-                        return error;
-                      }}
-                    />
-                    <FormErrorMessage>
-                      {errors.passwordConfirm}
-                    </FormErrorMessage>
-                  </FormControl>
-                  <Flex marginX={"100px"}>
-                    <Button sx={button} type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? <Spinner size="md" /> : <div>Signup</div>}
-                    </Button>
-                  </Flex>
-                  <Text
-                    sx={link}
-                    onClick={() => {
-                      navigate("/login");
-                    }}
-                  >
-                    Already have an account? Click here to login
-                  </Text>
-                </form>
-              </Container>
+    <>
+      {/* <Flex h={"70px"} bg={"red"} w={"auto"}></Flex> */}
+      <Grid templateColumns={"repeat(6, 1fr)"}>
+        <GridItem
+          colSpan={3}
+          bg={"#008F8F"}
+          h={"100vh"}
+          display={{ base: "none", md: "block" }}
+        >
+          <Flex sx={contentFlexRight}>
+            <Image src={"/logo.png"} sx={logo} mb={"40px"} />
+            <Text sx={loginText1}>Create Account</Text>
+            <Text sx={loginText2}>
+              Join the community and have fun predicting!
+            </Text>
+          </Flex>
+        </GridItem>
+        <GridItem
+          colSpan={3}
+          h={"100vh"}
+          ml={{ base: "20px", sm: "60px" }}
+          mr={{ base: "20px", sm: "60px" }}
+        >
+          <Flex sx={contentFlexLeft} color={"black"}>
+            {errorCard && (
+              <Flex sx={errorMessage}>
+                <Text sx={errorText}>{ErrorMessage}</Text>
+              </Flex>
             )}
-          </Formik>
-        </Flex>
-      </GridItem>
-    </Grid>
+            <Formik
+              width={"auto"}
+              initialValues={{
+                firstName: "",
+                lastName: "",
+                username: "",
+                email: "",
+                password: "",
+                passwordConfirm: "",
+              }}
+              onSubmit={(values) => {
+                //   console.log("valuesssssssssss: ", values);
+                handleSignUp(values);
+              }}
+            >
+              {({ handleSubmit, errors, touched, isSubmitting }) => (
+                <Container sx={rightCard}>
+                  <form onSubmit={handleSubmit}>
+                    <FormControl
+                      isRequired
+                      mb="10px"
+                      isInvalid={!!errors.firstName && touched.firstName}
+                    >
+                      <FormLabel htmlFor="FirstName" mb={"0"}>
+                        First Name
+                      </FormLabel>
+                      <Field
+                        as={Input}
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        placeholder="First Name"
+                        variant="filled"
+                        validate={(value) => {
+                          let error;
+                          if (!value) {
+                            error = "First name is required";
+                          }
+                          return error;
+                        }}
+                      />
+                      <FormErrorMessage>{errors.firstName}</FormErrorMessage>
+                    </FormControl>
+                    <FormControl
+                      isRequired
+                      mb="10px"
+                      isInvalid={!!errors.lastName && touched.lastName}
+                    >
+                      <FormLabel htmlFor="lastName" mb={"0"}>
+                        Last Name
+                      </FormLabel>
+                      <Field
+                        as={Input}
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        placeholder="Last Name"
+                        variant="filled"
+                        validate={(value) => {
+                          let error;
+                          if (!value) {
+                            error = "Last name is required";
+                          }
+                          return error;
+                        }}
+                      />
+                      <FormErrorMessage>{errors.lastName}</FormErrorMessage>
+                    </FormControl>
+                    <FormControl
+                      isRequired
+                      mb="10px"
+                      isInvalid={!!errors.username && touched.username}
+                    >
+                      <FormLabel htmlFor="username" mb={"0"}>
+                        Username
+                      </FormLabel>
+                      <Field
+                        as={Input}
+                        id="username"
+                        name="username"
+                        type="text"
+                        placeholder="Username"
+                        variant="filled"
+                        validate={(value) => {
+                          let error;
+                          if (!value) {
+                            error = "Username is required";
+                          }
+                          return error;
+                        }}
+                      />
+                      <FormErrorMessage>{errors.username}</FormErrorMessage>
+                    </FormControl>
+                    <FormControl
+                      isRequired
+                      mb="10px"
+                      isInvalid={!!errors.email && touched.email}
+                    >
+                      <FormLabel htmlFor="email" mb={"0"}>
+                        Email Address
+                      </FormLabel>
+                      <Field
+                        as={Input}
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="Email Address"
+                        variant="filled"
+                        validate={(value) => {
+                          console.log("isSubmitting: ", isSubmitting);
+                          let error;
+                          if (!value) {
+                            error = "Email is required";
+                          } else if (
+                            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+                              value
+                            )
+                          ) {
+                            error = "Invalid email address";
+                          }
+                          return error;
+                        }}
+                      />
+                      <FormErrorMessage>{errors.email}</FormErrorMessage>
+                    </FormControl>
+                    <FormControl
+                      isRequired
+                      mb="10px"
+                      isInvalid={!!errors.password && touched.password}
+                    >
+                      <FormLabel htmlFor="password" mb={"0"}>
+                        Password
+                      </FormLabel>
+                      <Field
+                        as={Input}
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Password "
+                        variant="filled"
+                        validate={(value) => {
+                          let error;
+                          console.log("error: ", error);
+                          if (value.length < 6) {
+                            error =
+                              "Password must contain at least 6 characters";
+                          }
+                          setPassword(value);
+
+                          return error;
+                        }}
+                      />
+                      <FormErrorMessage>{errors.password}</FormErrorMessage>
+                    </FormControl>
+                    <FormControl
+                      isRequired
+                      mb="10px"
+                      isInvalid={
+                        !!errors.passwordConfirm && touched.passwordConfirm
+                      }
+                    >
+                      <FormLabel htmlFor="password" mb={"0"}>
+                        Password Confirm
+                      </FormLabel>
+                      <Field
+                        as={Input}
+                        id="repeat_password"
+                        name="passwordConfirm"
+                        type="password"
+                        placeholder="Password Confirm"
+                        variant="filled"
+                        validate={(value) => {
+                          let error;
+                          console.log("error: ", error);
+                          if (value !== password) {
+                            error = "Passwords do not match";
+                          }
+
+                          return error;
+                        }}
+                      />
+                      <FormErrorMessage>
+                        {errors.passwordConfirm}
+                      </FormErrorMessage>
+                    </FormControl>
+                    <Flex marginX={"100px"}>
+                      <Button sx={button} type="submit" disabled={isSubmitting}>
+                        {isSubmitting ? (
+                          <Spinner size="md" />
+                        ) : (
+                          <div>Signup</div>
+                        )}
+                      </Button>
+                    </Flex>
+                    <Text
+                      sx={link}
+                      onClick={() => {
+                        navigate("/login");
+                      }}
+                    >
+                      Already have an account? Click here to login
+                    </Text>
+                  </form>
+                </Container>
+              )}
+            </Formik>
+          </Flex>
+        </GridItem>
+      </Grid>
+    </>
   );
 }
