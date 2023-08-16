@@ -200,7 +200,7 @@ export default function SignUp() {
         <GridItem
           colSpan={3}
           bg={"#008F8F"}
-          h={"100vh"}
+          h={{ base: "100vh", md: "120vh" }}
           display={{ base: "none", md: "block" }}
         >
           <Flex sx={contentFlexRight}>
@@ -216,6 +216,8 @@ export default function SignUp() {
           h={"100vh"}
           ml={{ base: "20px", sm: "60px" }}
           mr={{ base: "20px", sm: "60px" }}
+          //   bg={"red"}
+          mt={{ md: "60px" }}
         >
           <Flex sx={contentFlexLeft} color={"black"}>
             {errorCard && (

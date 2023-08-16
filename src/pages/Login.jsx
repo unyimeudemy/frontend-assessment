@@ -155,7 +155,6 @@ export default function Login() {
           }}
           onSubmit={(values) => {
             handleLogin(values);
-            console.log("valuesssssssssss: ", values);
           }}
         >
           {({ handleSubmit, errors, touched, isSubmitting }) => (
