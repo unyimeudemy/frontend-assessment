@@ -44,22 +44,10 @@ export default function SearchBar({ searchPlaceHolder, setSearchQ }) {
     w: "260px",
   };
 
-  //   const handleSearch = () => {
-  //     console.log("search clicked: ");
-  //     const currentURL = window.location.href;
-  //     const newURL = `${currentURL}/${searchQ}`;
-
-  //     window.history.pushState({}, null, newURL);
-  //   };
-
   return (
     <InputGroup sx={searchBar}>
       <Flex sx={flex}>
-        <Search2Icon
-          color="black"
-          cursor={"pointer"}
-          //   onClick={() => handleSearch()}
-        />
+        <Search2Icon color="black" cursor={"pointer"} />
         <Input
           sx={input}
           type="text"

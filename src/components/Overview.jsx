@@ -153,14 +153,11 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
         setAdmins(filteredAdmins);
       } catch (error) {
         if (error.message == "Request failed with status code 401") {
-          console.log("not authenticated");
           navigate("/login");
         }
       }
     })();
   }, []);
-  //   func();
-  //   console.log("admins: ", admins);
 
   return (
     <>

@@ -100,15 +100,12 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const handleLogin = async ({ email, password }) => {
-    console.log("valuesssssssssss: ", email, password);
-
     dispatch(loginStart());
     try {
       const res = await Axios.post("/admin/login", {
         email,
         password,
       });
-      console.log("resssssss: ", res);
 
       /**
        * on successful login,
@@ -127,7 +124,6 @@ export default function Login() {
        * to login to login page to try login again.
        */
       dispatch(loginFailure());
-      console.log("errorrr", err.message);
       setPadding("30px");
       setErrorCard(true);
       if (err.message == "Network Error") {
@@ -176,7 +172,6 @@ export default function Login() {
                   placeholder="Email Address"
                   variant="filled"
                   validate={(value) => {
-                    console.log("isSubmitting: ", isSubmitting);
                     let error;
                     if (!value) {
                       error = "Email is required";
@@ -207,7 +202,6 @@ export default function Login() {
                   variant="filled"
                   validate={(value) => {
                     let error;
-                    console.log("error: ", error);
                     if (value.length < 6) {
                       error = "Password must contain at least 6 characters";
                     }

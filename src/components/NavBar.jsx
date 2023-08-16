@@ -24,16 +24,23 @@ export default function NavBar({ navBarTitle, adminUsername, status }) {
     flexDirection: "spread-around",
     bg: "#FFF",
     width: {
+      //   sm: "425px",
+      //   md: "968px",
+      //   lg: "1060px",
+      //   xl: "2560px",
+      //   //   "2xl": "2560px",
+
       sm: "425px",
       md: "768px",
-      lg: "1024px",
+      lg: "1060px",
       xl: "1440px",
-      "2xl": "2560px",
+      //   "2xl": "2560px",
     },
-    // width: { base: "1697px" },
+    // width: "auto",
     height: "100px",
     flexShrink: 0,
     alignItems: "center",
+    // bg: "red",
   };
 
   const right = {

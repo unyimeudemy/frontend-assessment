@@ -156,14 +156,7 @@ export default function SignUp() {
     passwordConfirm,
   }) => {
     let repeat_password = passwordConfirm;
-    console.log(
-      firstName,
-      lastName,
-      email,
-      username,
-      password,
-      repeat_password
-    );
+
     dispatch(loginStart());
     try {
       const res = await axios.post(
@@ -184,7 +177,6 @@ export default function SignUp() {
       navigate("/dashboard");
     } catch (err) {
       dispatch(loginFailure());
-      console.log("error", err.message);
       setPadding("30px");
       setErrorCard(true);
       if (err.message == "Network Error") {
@@ -236,7 +228,6 @@ export default function SignUp() {
                 passwordConfirm: "",
               }}
               onSubmit={(values) => {
-                //   console.log("valuesssssssssss: ", values);
                 handleSignUp(values);
               }}
             >
@@ -334,7 +325,6 @@ export default function SignUp() {
                         placeholder="Email Address"
                         variant="filled"
                         validate={(value) => {
-                          console.log("isSubmitting: ", isSubmitting);
                           let error;
                           if (!value) {
                             error = "Email is required";
@@ -367,7 +357,6 @@ export default function SignUp() {
                         variant="filled"
                         validate={(value) => {
                           let error;
-                          console.log("error: ", error);
                           if (value.length < 6) {
                             error =
                               "Password must contain at least 6 characters";
@@ -398,7 +387,6 @@ export default function SignUp() {
                         variant="filled"
                         validate={(value) => {
                           let error;
-                          console.log("error: ", error);
                           if (value !== password) {
                             error = "Passwords do not match";
                           }

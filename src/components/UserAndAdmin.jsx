@@ -170,7 +170,6 @@ export default function UserAndAdmin({
             setUsersAndAdmins(filteredAdmins);
           } else {
             setUsersAndAdmins(filteredAdmins);
-            console.log("filtered admins", filteredAdmins);
           }
         } else {
           const res = await Axios.get("/admin/get-users");
@@ -185,19 +184,16 @@ export default function UserAndAdmin({
             setUsersAndAdmins(filteredUsers);
           } else {
             setUsersAndAdmins(filteredUsers);
-            console.log("filtered users", filteredUsers);
           }
         }
       } catch (error) {
         if (error.message == "Request failed with status code 401") {
-          console.log("not authenticated");
           navigate("/login");
         }
       }
     };
     func();
   }, [navBarTitle, searchQ]);
-  console.log("searchQ in ", !!searchQ);
 
   const { txt } = useSelector((state) => state.popUpStatus);
 
