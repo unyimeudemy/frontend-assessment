@@ -13,7 +13,6 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import axios from "axios";
 import { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

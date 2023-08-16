@@ -49,8 +49,7 @@ export default function Logout() {
 
   const text = {
     color: "#E0E0E0",
-    // fontFamily: "myRobo",
-    fontFamily: "Tilt Prism",
+    fontFamily: "Roboto",
     fontSize: "30px",
     fontStyle: "normal",
     fontWeight: "900",

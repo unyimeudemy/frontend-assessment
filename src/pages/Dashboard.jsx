@@ -4,8 +4,7 @@ import NavBar from "../components/NavBar";
 import Overview from "../components/Overview";
 import UserAndAdmin from "../components/UserAndAdmin";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
-import Axios from "../lib/api/axios";
+
 import Logout from "../components/Logout";
 import { useState } from "react";
 

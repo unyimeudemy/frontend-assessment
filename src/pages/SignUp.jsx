@@ -177,7 +177,6 @@ export default function SignUp() {
           repeat_password,
         }
       );
-      console.log(res.data.token);
       dispatch(loginSuccess(res.data));
       localStorage.setItem("AccessToken", `Bearer ${res.data.token}`);
 

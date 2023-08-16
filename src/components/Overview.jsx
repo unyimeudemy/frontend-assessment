@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import axios from "axios";
 import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Axios from "../lib/api/axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { allUsersSuccess } from "../redux/slices/allUsersSlice";
 import { useNavigate } from "react-router-dom";
@@ -22,10 +22,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function Overview({ navBarTitle, adminUsername, status }) {
   const container = {
-    // width: "1440px",
+    width: "auto",
     height: "924px",
     bg: "#F4F4F4",
     flexDirection: "column",
+    // bg: "red",
   };
 
   const topRightCard = {
@@ -85,6 +86,7 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
 
   const cardList = {
     width: "540px",
+    width: { base: "460px" },
     height: "512px",
     bg: "#FFF",
     mb: "83px",
@@ -109,6 +111,9 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
 
   const outSideRight = {
     height: "570px",
+    // width: { sm: "300px" },
+    // height: "570px",
+    // bg: "red",
   };
 
   const textDown = {
@@ -118,6 +123,7 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
     fontStyle: "normal",
     fontWeight: "600",
     lineHeight: "32px",
+    ml: { base: "120px", md: "0px" },
   };
 
   const [users, setUsers] = useState([]);
@@ -132,27 +138,29 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
    * display them as a list.
    */
 
-  const func = async () => {
-    try {
-      const res = await Axios.get("/admin/get-users");
-      const filteredUsers = res?.data?.data.filter(
-        (item) => item.role === "user"
-      );
-      const filteredAdmins = res?.data?.data.filter(
-        (item) => item.role === "admin"
-      );
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await Axios.get("/admin/get-users");
+        const filteredUsers = res?.data?.data.filter(
+          (item) => item.role === "user"
+        );
+        const filteredAdmins = res?.data?.data.filter(
+          (item) => item.role === "admin"
+        );
 
-      setUsers(filteredUsers);
-      setAdmins(filteredAdmins);
-    } catch (error) {
-      if (error.message == "Request failed with status code 401") {
-        console.log("not authenticated");
-        navigate("/login");
+        setUsers(filteredUsers);
+        setAdmins(filteredAdmins);
+      } catch (error) {
+        if (error.message == "Request failed with status code 401") {
+          console.log("not authenticated");
+          navigate("/login");
+        }
       }
-    }
-  };
-  func();
-  console.log("admins: ", admins);
+    })();
+  }, []);
+  //   func();
+  //   console.log("admins: ", admins);
 
   return (
     <>
@@ -162,7 +170,12 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
         status={status}
       />
       <Flex sx={container}>
-        <Flex p={"39px"} justifyContent={"flex-start"} gap={"39px"}>
+        <Flex
+          p={"39px"}
+          justifyContent={"flex-start"}
+          gap={"39px"}
+          flexDirection={{ base: "column", sm: "row" }}
+        >
           <Flex sx={topRightCard} justifyContent={"flex-start"}>
             <Flex flexDirection={"column"} width={"438px"}>
               <Text sx={text}>TOTAL NUMBER OF USERS</Text>
@@ -186,7 +199,12 @@ export default function Overview({ navBarTitle, adminUsername, status }) {
             </Flex>
           </Flex>
         </Flex>
-        <Flex h={"122px"} ml={"39px"} gap={"37px"}>
+        <Flex
+          h={"122px"}
+          ml={"39px"}
+          gap={"37px"}
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <Flex flexDirection={"column"} sx={outSideRight}>
             <Text sx={textDown}>List Of Users</Text>
             <Container sx={cardList}>

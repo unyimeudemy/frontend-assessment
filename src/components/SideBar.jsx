@@ -22,8 +22,11 @@ export default function SideBar() {
   const sideBar = {
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
     height: "1024px",
     bg: "#008F8F",
+    // bg: { base: "#008F8F", md: "red" },
+    display: { base: "none", md: "block" },
   };
 
   const logo = {
@@ -87,7 +90,9 @@ export default function SideBar() {
   return (
     <>
       <Flex sx={sideBar}>
-        <Image src={"/logo.png"} sx={logo} />
+        <Flex justifyContent={"center"}>
+          <Image src={"/logo.png"} sx={logo} />
+        </Flex>
         <Divider sx={divider} />
         <Flex
           sx={tabV}

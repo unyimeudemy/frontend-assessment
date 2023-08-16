@@ -8,10 +8,11 @@ const fonts = {
 };
 
 const breakpoints = {
-  sm: "40em",
-  md: "52em",
-  lg: "64em",
-  xl: "80em",
+  sm: "425px", // tablet
+  md: "768px", // small laptops
+  lg: "1024px", // large laptops
+  xl: "1440px", // small desktop
+  "2xl": "2560px", // large desktop
 };
 
 const colors = {

@@ -51,6 +51,8 @@ export default function UserAndAdmin({
     height: "923px",
     bg: "#F4F4F4",
     flexDirection: "column",
+    // width: { base: "1040px" },
+    width: "auto",
   };
 
   const top = {
@@ -58,6 +60,7 @@ export default function UserAndAdmin({
     flexShrink: 0,
     bg: "#008F8F",
     justify: "space-around",
+    width: { base: "1000px" },
   };
 
   const flex = {
@@ -65,7 +68,8 @@ export default function UserAndAdmin({
     mt: "40.01px",
     mb: "40.01px",
     flexDirection: "column",
-    width: "1116.997px",
+    // width: "1116.997px",
+    width: { base: "1000px" },
   };
 
   const text = {
@@ -147,6 +151,12 @@ export default function UserAndAdmin({
    *
    * The filter option popup is also rendered here outside the main component
    */
+  //   let res;
+  //   const fetchUsers = async () => {
+  //     res = await Axios.get("/admin/get-users");
+  //   };
+  //   fetchUsers();
+
   useEffect(() => {
     const func = async () => {
       try {

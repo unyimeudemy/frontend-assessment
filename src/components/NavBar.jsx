@@ -1,5 +1,14 @@
-import { Flex, Grid, GridItem, Heading, Spacer, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  Icon,
+  Spacer,
+  Text,
+} from "@chakra-ui/react";
 import SideBar from "../components/SideBar";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 /**
  *
@@ -14,9 +23,17 @@ export default function NavBar({ navBarTitle, adminUsername, status }) {
   const flex = {
     flexDirection: "spread-around",
     bg: "#FFF",
-    width: "1197px",
+    width: {
+      sm: "425px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1440px",
+      "2xl": "2560px",
+    },
+    // width: { base: "1697px" },
     height: "100px",
     flexShrink: 0,
+    alignItems: "center",
   };
 
   const right = {
@@ -52,6 +69,7 @@ export default function NavBar({ navBarTitle, adminUsername, status }) {
 
   return (
     <Flex sx={flex}>
+      <HamburgerIcon boxSize={10} />
       <Text sx={right}>{navBarTitle}</Text>
       <Spacer />
       <Flex flexDirection={"column"} m={"27px"}>
