@@ -8,7 +8,7 @@ The react app only has three pages:
 
 1. Signup page for registration
 2. The login page for already registered users
-3. The dashboard with four tabs for overview, users, admins and logout.
+3. The dashboard with four tabs four overview, users, admins and logout.
    NOTE: All tabs except logout are protected thus user has to be logged in before he or she
    can access the page, else user will be redirected to login page.
 
